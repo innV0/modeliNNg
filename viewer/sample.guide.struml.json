@@ -1,0 +1,371 @@
+{
+  "title": "iNNitiatives Process Guide EN V0.2.0 - Enhanced",
+  "tags": "metamodel::guide,adapted_for::iNNitiativesApp,version::0.2.1",
+  "items": [
+    {
+      "title": "🧭Guide",
+      "content": "Updated guide for managing early-stage innovation using the iNNitiatives app. This version includes more detailed descriptions and relational tagging for better process understanding.",
+      "tags": "type::guide,status::enhanced",
+      "items": [
+        {
+          "title": "🛠️Work",
+          "content": "Defines the structured workflow for innovation management, executed and documented entirely within the iNNitiatives app. It outlines the sequential stages from program setup to initiative validation.",
+          "tags": "process>>workflow,area::execution",
+          "items": [
+            {
+              "id": "maz4a986dx0r1",
+              "title": " Innovation Program Management",
+              "content": "High-level management of the innovation program, focusing on strategic planning, operational setup, and governance. The innovation program's core setup information, managed within the iNNitiatives app or detailed in the iNNitiatives Doc, must be completed in detail, addressing crucial aspects such as the definition of roles and responsibilities, establishing success metrics, and defining the overall innovation lifecycle tailored to the organization.\n\n### Roles\n- **Innovation Sponsor:** Who will assume this leadership role, providing strategic direction, executive backing, and championing innovation initiatives across the organization?\n- **Innovation Manager:** Who will be responsible for the day-to-day operational management of the innovation program, ensuring the efficient execution of all projects, managing resources, and facilitating communication?\n\n### Evaluation and Diagnosis\n- **Organizational Feature Evaluation:** Assess the organization's characteristics (culture, resources, structure, market position) relevant to fostering a successful innovation program.\n- **Innovation Maturity Self-Assessment:** Conduct a self-assessment of the organization's current innovation maturity level to identify strengths, weaknesses, areas for improvement, and strategic growth opportunities.\n\n### Review and Adaptation of the iNNitiatives Methodology\n- **Current Process Analysis (innV0):** A thorough review of the organization's existing innovation process (if any) will be conducted to understand current practices and identify integration points or areas for overhaul.\n- **iNNitiatives Methodology Adaptation:** The standard iNNitiatives methodology will be adapted and customized to fit the specific needs, context, and strategic objectives of the organization.\n\n### Innovation Strategy\n- **Strategy Definition:** Define a clear and actionable innovation strategy that will guide all initiatives, ensuring alignment with the company's overall business objectives and competitive landscape.",
+              "tags": "phase::setup, concept::strategic_planning, concept::program_governance, concept::resource_allocation, concept::maturity_assessment, concept::methodology_customization, role>>Innovation Sponsor, role>>Innovation Manager, uses_object>>iNNitiatives Doc, uses_object>>iNNitiatives Calendar",
+              "items": [
+                {
+                  "id": "mb0lafej23fup",
+                  "title": "Innovation Program Document Repository Management",
+                  "content": "Establish and maintain a centralized document repository for the innovation program. This ensures efficient, secure, and organized access to all critical information, templates, reports, and deliverables generated throughout the program lifecycle.\n\n### Key Considerations:\n\n1.  **Storage Platform Selection:**\n\t*   Select a secure, accessible, and scalable cloud storage platform (e.g., Google Drive, SharePoint, Dropbox) that aligns with organizational IT policies.\n\t*   Ensure the chosen platform complies with the organization's data security, privacy, and regulatory compliance requirements (e.g., GDPR, HIPAA if applicable).\n1.  **Logical Folder Structure Definition:**\n\t*   Define a clear, intuitive, and standardized folder structure to facilitate easy navigation, storage, and retrieval of documents.\n\t*   Categorize documents by type (e.g., proposals, research, meeting minutes, financial_reports), by project phase, or by innitiative. Each innitiative must have its own dedicated folder within the repository. The folder name must follow this format: <innitiative id>, space, <innitiative name>. For example, `INN001 New line of phosphorescent t-shirts`.\n  * Each time a new innitiative is approved, a subfolder will be created within the main 'initiatives' folder or equivalent.\n  * Establish and enforce clear naming conventions for both documents and folders to ensure consistency and facilitate efficient search and identification.\n1.  **Access Control Implementation:**\n\t*   Implement a robust, role-based access control (RBAC) system to ensure that only authorized individuals can access, modify, or share sensitive and confidential documents.\n\t*   The [[Innovation Sponsor]] and the [[Innovation Manager]] must have full administrative access to the entire repository.\n\t*   [[Innitiative Manager]]s must have edit access to their respective project folders and read-access to general program documents.\n\t*   Program participants and [[Innitiative Contributor]]s should have access tailored to the documents relevant to their specific roles and responsibilities (typically read-only for general docs, contribute for specific task docs).\n4.  **Comprehensive Innovation Process Documentation:**\n    *   Ensure that all documents and artifacts generated during the innovation process are systematically archived in the repository within the correct innitiative folder (e.g., market research findings, user personas, design sketches, wireframes, prototype test plans, user feedback summaries, validation reports, final presentations).\n5.  **Data Backup and Recovery Strategy:**\n    *   Implement an automated and regular data backup system to protect against accidental data loss, corruption, or system failures.\n    *   Establish and document a disaster recovery process to ensure business continuity for the innovation program in case of an unexpected critical event.\n6.  **Communication, Training, and Onboarding:**\n    *   Clearly communicate to all program participants the existence, purpose, and location of the document repository, along with procedures for accessing and utilizing the information effectively.\n    *   Provide adequate training and onboarding materials on naming conventions, folder structure, version control, and access control procedures to all users.",
+                  "tags": "role>>Innovation Manager, process_support::documentation, concept::information_architecture, concept::version_control, concept::data_security",
+                  "items": []
+                }
+              ]
+            },
+            {
+              "id": "mb0tufsi5kc6p",
+              "title": "Opportunity Management",
+              "content": "The systematic process of identifying, capturing, evaluating, and prioritizing potential innovation opportunities. This phase acts as a funnel, filtering raw ideas and observations into well-defined opportunities ready for deeper exploration as potential innitiatives.",
+              "tags": "phase::discovery, concept::idea_funnel, concept::opportunity_sourcing, concept::initial_screening, follows>> Innovation Program Management, precedes>>Innitiative Management, role>>Innovation Manager",
+              "items": [
+                {
+                  "id": "mb0ua55q0ioqr",
+                  "title": "Opportunity Generation",
+                  "content": "Actively source and stimulate the creation of innovation opportunities using a diverse set of techniques. This involves looking both internally and externally for unmet needs, unsolved problems, and emerging trends that could lead to valuable innovations.\n\nApply various techniques for generating innovation opportunities to drive the identification of new ideas. These techniques aim to foster creative thinking and gather diverse perspectives.\n\n### Steps for Opportunity Generation:\n\n1.  **Select and Apply Idea Generation Techniques:**\n\t*   Employ a range of techniques suitable for the organizational context, such as:\n\t\t*   **Brainstorming Sessions:** Structured or unstructured group sessions to generate a high volume of ideas.\n\t\t*   **Design Thinking Workshops:** Empathetic, user-centered approaches to uncover needs and ideate solutions.\n\t\t*   **Employee Interviews & Suggestion Schemes:** Tapping into the knowledge and insights of frontline staff and other employees.\n\t\t*   **Co-creation with Stakeholders:** Collaborative sessions with customers, partners, or suppliers to generate shared-value opportunities.\n\t\t*   **Market and Technology Trend Analysis:** Scanning for emerging technologies, market shifts, and competitor actions.\n\t\t*   **Benchmarking:** Learning from best practices and innovations in other companies, both within and outside the industry.\n\t\t*   **Customer Journey Mapping:** Identifying pain points and opportunities for improvement from the customer's perspective.\n2.  **Gather Diverse Information and Insights:**\n\t*   Collect relevant information from a multitude of sources:\n\t\t*   Internal data (sales figures, operational metrics, employee feedback).\n\t\t*   External market research data and industry reports.\n\t\t*   Direct customer feedback (surveys, interviews, support tickets).\n\t\t*   Academic research, scientific publications, and patent databases.\n3.  **Analyze, Synthesize, and Identify Potential Opportunities:**\n\t*   Systematically analyze the collected information to identify patterns, connections, emerging trends, and recurring problems or unmet needs. Synthesize these findings into clearly articulated, concrete innovation opportunities.\n\n### Recommended Tools and Techniques:\n\n*   **iNNitiatives app:** Directly use the 'Opportunities' section in the iNNitiatives app to initially capture and document the raw outputs from generation activities before formal registration.\n*   **Digital Whiteboards (Miro, Mural):** For virtual brainstorming and idea organization.\n*   **Survey Tools (Typeform, Google Forms):** For collecting widespread feedback.\n\nBy following this process, the organization can build a rich pipeline of potential innovation opportunities, which then feed into the registration and evaluation stages.",
+                  "tags": "sub_phase::ideation, concept::creative_thinking, concept::stakeholder_engagement, concept::data_collection, role>>Innovation Manager, role>>Innitiative Contributor, next>>Opportunity Registration, uses_object>>Opportunities module",
+                  "items": []
+                },
+                {
+                  "title": "Opportunity Registration",
+                  "content": "Formally document identified innovation opportunities in the 'Opportunities' section of the iNNitiatives app. This step ensures that each potential opportunity is captured consistently with essential details for preliminary assessment and tracking.\n\n### Preliminary Evaluation during Registration\nAs part of the registration, perform an initial high-level assessment of opportunities based on apparent technical feasibility and broad strategic alignment to filter out clearly unviable suggestions early.\n\n### Steps for Registration:\n1. **Register the Opportunity**: Document the opportunity comprehensively in the 'Opportunities' section of the iNNitiatives app. Ensure to include:\n   - `Opportunity - ID`: A unique identifier assigned (e.g., OPP-YYYY-NNN).\n   - `Opportunity - Name`: A concise and descriptive title (e.g., \"Automate Invoice Processing\").\n   - `Opportunity - Description`: A thorough explanation of the context, the problem or unmet need it addresses, and its potential impact or benefit.\n   - `Opportunity - Proposer`: The name or team who identified/submitted the opportunity.\n   - `Opportunity - Priority`: An initial, preliminary priority score (e.g., 0-9 scale) based on perceived urgency and strategic relevance.\n2. **Conduct Preliminary Evaluation**: Briefly assess the opportunity against high-level criteria:\n   - **Apparent Technical Feasibility**: Is the underlying technology or approach seemingly achievable with current or near-future capabilities?\n   - **Broad Strategic Alignment**: Does the opportunity generally align with the company's overall strategic direction and innovation focus areas?\n   - **Potential Impact (Qualitative)**: What is the initial sense of the potential benefits (e.g., cost savings, revenue growth, efficiency gains, improved customer satisfaction)?\n3. **Assign Initial Priority**: Based on the preliminary evaluation, assign or adjust the initial priority. This helps in early-stage sorting.\n4. **Ensure Field Completion**: Verify that all mandatory fields in the 'Opportunities' section of the iNNitiatives app are accurately and consistently filled for the new entry.\n\nThis structured registration process creates a valuable, queryable database of potential innovations, forming the basis for more detailed evaluation.",
+                  "tags": "sub_phase::capture, concept::data_entry, concept::initial_assessment, updated>>Opportunity - ID, updated>>Opportunity - Name, updated>>Opportunity - Description, updated>>Opportunity - Priority, updated>>Opportunity - Proposer, next>>Opportunity Evaluation, role>>Innovation Manager, preceded_by>>Opportunity Generation, uses_object>>Opportunities module",
+                  "id": "mayed5mhenbzt0",
+                  "items": []
+                },
+                {
+                  "id": "mb0tv4oyhmeg6",
+                  "title": "Opportunity Evaluation",
+                  "content": "Systematically assess registered opportunities against a defined set of criteria to determine their potential value, feasibility, and strategic fit. This step goes deeper than the preliminary evaluation during registration and is crucial for making informed decisions about which opportunities to advance into formal initiatives.\n\nFor each registered innovation opportunity:\n\n1. **Detailed Evaluation**: Evaluate the opportunity more thoroughly based on:\n   - **Technical Feasibility**: Can the proposed solution be developed and implemented with available or acquirable technology and expertise? What are the technical risks?\n   - **Strategic Alignment**: How well does this opportunity align with the organization's specific strategic objectives, innovation goals, and market focus? Does it leverage core competencies?\n   - **Potential Impact/Value**: Quantify or estimate the potential benefits. This could include financial returns (ROI, new revenue), operational improvements (cost reduction, efficiency), market advantages (market share, competitive differentiation), or social/environmental impact.\n   - **Resource Requirements**: Estimate the likely resources needed (financial, human, technological, time).\n   - **Risks and Challenges**: Identify potential risks (market, technical, financial, operational) and challenges to successful implementation.\n   - **Market Attractiveness/Demand**: Is there a clear customer need or market demand for this? What is the size of the potential market?\n2. **Assign/Refine Priority**: Based on the detailed evaluation, adjust or confirm the priority of the opportunity. This often involves a scoring model or a committee review. Consider factors like:\n   - **Urgency**: How quickly is a solution needed to address the problem or capitalize on the opportunity?\n   - **Strategic Importance**: How critical is this opportunity for achieving strategic goals?\n   - **Benefit/Effort Ratio**: Compare the potential benefits against the estimated effort and resources required.\n3. **Document Evaluation Outcomes**: Record the findings, scores, and rationale for the assigned priority in the 'Opportunities' section of the iNNitiatives app or a linked evaluation document. Ensure the information in the following fields is updated or confirmed:\n   - `Opportunity - Priority`: Updated priority value.\n   - Potentially add new fields for scoring against specific criteria (e.g., `Opportunity - Strategic Fit Score`, `Opportunity - Impact Score`).\n   - Notes on key findings from the evaluation.\nThis process helps to create a prioritized backlog of opportunities, ready for selection to become formal 'Innitiatives'.",
+                  "tags": "sub_phase::assessment,concept::feasibility_study,concept::risk_assessment,concept::prioritization_matrix,role>>Innovation Manager,role>>Innovation Sponsor,preceded_by>>Opportunity Registration,influences>>Idea Definition,updated>>Opportunity - Priority",
+                  "items": []
+                }
+              ]
+            },
+            {
+              "id": "maz3touq8kit2",
+              "title": "Innitiative Management",
+              "content": "The structured lifecycle management for a specific innovation idea that has been selected from the prioritized opportunities. This involves progressing the idea through stages of definition, concept design, prototype development, and validation to determine its viability for full-scale development or implementation.\n\nThe 'Innitiatives' section in the iNNitiatives app is where ideas that address particular opportunities are recorded and managed.\n\n### Proceso\n1.  **Identificar la Oportunidad**: Se parte de una oportunidad detectada previamente.\n2.  **Brainstorming de Ideas**: Se generan ideas utilizando técnicas como SCAMPER o Design Thinking.\n3.  **Registro Detallado**: Se registra cada iniciativa asignando un ID único y especificando:\n    *   Nombre descriptivo.\n    *   Oportunidad que aborda.\n    *   Problema que soluciona.\n    *   Notas relevantes.\n4.  **Validación Interna**: Se valida la iniciativa con los stakeholders clave para asegurar la alineación.\n5.  **Evaluación con Criterios Definidos**: Se evalúa usando criterios claros, como:\n    *   Claridad en la definición del problema.\n    *   Alineación con los stakeholders.\n    *   Factibilidad de la solución propuesta.\n\nEste proceso asegura que solo las iniciativas bien definidas y alineadas con los objetivos estratégicos sean consideradas para su desarrollo posterior.",
+              "tags": "phase::development, concept::project_management, concept::agile_methodology, concept::lean_startup, follows>>Opportunity Management, role>>Innitiative Manager",
+              "items": [
+                {
+                  "title": "Idea Definition",
+                  "content": "Transform a prioritized opportunity into a formal 'Innitiative' by clearly defining the problem it addresses, the target customer, and initial thoughts on potential solutions. This is recorded in the 'Innitiatives' section of the iNNitiatives app.\n\n## Steps\n1. **Select Prioritized Opportunity**: Choose a high-priority opportunity from the 'Opportunities' module to convert into an 'Innitiative'.\n2. **Brainstorm & Refine Solution Ideas**: Based on the opportunity, conduct focused brainstorming (e.g., using SCAMPER, Design Thinking principles) to generate and refine specific solution ideas.\n3. **Register Innitiative**: Document the new innitiative in the 'Innitiatives' section of the iNNitiatives app, populating key fields:\n   - `Innitiative - ID`: Assign a unique identifier.\n   - `Innitiative - Name`: A clear, descriptive name for the innitiative.\n   - `Innitiative - Opportunity`: Link to the source `Opportunity - ID`.\n   - `Innitiative - Problem`: Clearly articulate the specific problem this innitiative aims to solve, from the customer's perspective.\n   - `Innitiative - Customer`: Define the primary target user or beneficiary.\n   - `Innitiative - Notes`: Initial thoughts, scope considerations, or key assumptions.\n4. **Internal Stakeholder Validation**: Briefly validate the problem definition and initial idea with key internal stakeholders (e.g., subject matter experts, potential internal users, sales/marketing for market fit) to ensure alignment and gather early feedback.\n5. **Initial Feasibility & Viability Check**: Evaluate the defined idea against basic decision criteria: Is the problem clearly defined and significant? Is there stakeholder alignment? Does it appear broadly feasible at this early stage?",
+                  "tags": "sub_phase::ideation_to_initiative,concept::problem_definition,concept::solution_brainstorming,concept::stakeholder_alignment,role>>Innovation Manager,role>>Innitiative Manager,updated>>Innitiative - ID,updated>>Innitiative - Name,updated>>Innitiative - Opportunity,updated>>Innitiative - Problem,updated>>Innitiative - Customer,updated>>Innitiative - Notes,next>>Concept Design,triggered_by>>Opportunity Evaluation,uses_object>>Innitiatives module",
+                  "id": "mayed5mhb3ar7d",
+                  "items": []
+                },
+                {
+                  "title": "Concept Design",
+                  "content": "Develop the defined innitiative idea into a more concrete concept. This involves articulating the core value proposition, outlining the proposed solution, estimating resources, and defining initial success metrics.\n\nEach innitiative evolves into a concept with:\n\n- **Proposed Solution Outline**: A more detailed description of how the innitiative will solve the problem, documented in `Innitiative - Solution`.\n- **Main Hypothesis / Value Proposition**: What is the core assumption about the value this solution will deliver to the customer? This is documented in `Innitiative - Value`.\n- **Estimated Budget**: A preliminary estimate of the financial resources required for the next phase (e.g., prototyping), recorded in `Innitiative - Budget`.\n- **Required Resources**: An initial list of human resources, tools, or technology needed, captured in `Innitiative - Resources`.\n- **Key performance indicators (KPIs)** in `Innitiative - Goals`. Examples: \"Achieve 20% cost reduction in X process,\" \"Increase customer response speed by 50% within 3 months of pilot,\" \"Validate user adoption with 100 pilot users.\"",
+                  "tags": "sub_phase::conceptualization, concept::value_proposition_design, concept::resource_planning, concept::kpi_definition, role>>Product Owner, role>>Innitiative Manager, updated>>Innitiative - Value, updated>>Innitiative - Budget, updated>>Innitiative - Resources, updated>>Innitiative - Solution, updated>>Innitiative - Goals, next>>Prototype Development, preceded_by>>Idea Definition",
+                  "id": "mayed5mhzayak6"
+                },
+                {
+                  "title": "Prototype Development",
+                  "content": "Create a tangible, testable version (Minimum Viable Product - MVP, prototype, or experiment) of the concept to gather feedback and validate assumptions. Track experiments and progress using fields like `Innitiative - Next Steps`, `Innitiative - Resources`, and `Innitiative - Goals` (which may be refined at this stage).\n\n**Prototyping Approaches & Tools**:\n- Utilize tools appropriate for the type of prototype: Figma or Adobe XD for digital interfaces, Miro or FigJam for collaborative whiteboarding and service blueprints, Typeform or SurveyMonkey for concept testing surveys, 3D printing for physical objects, or simple mock-ups/storyboards.\n\n**Criteria for a Successful Prototype Stage**:\n- The prototype effectively demonstrates the core functionality or addresses the key problem identified.\n- It has been tested with representative users or through relevant experiments.\n- Positive and actionable feedback has been gathered on usability, functionality, or desirability.\n- Key assumptions have been validated or invalidated, leading to clear learnings.",
+                  "tags": "sub_phase::prototyping,concept::mvp_development,concept::user_testing,concept::iterative_design,tool_type::design_software,tool_type::survey_tool,role>>Designer,role>>Innitiative Manager,updated>>Innitiative - Next Steps,updated>>Innitiative - Resources,updated>>Innitiative - Goals,next>>Innitiative Validation,preceded_by>>Concept Design",
+                  "id": "mayed5mhgbb61f"
+                },
+                {
+                  "title": "Innitiative Validation",
+                  "content": "Systematically test the prototype or MVP with target users and stakeholders to gather evidence on its effectiveness, desirability, and viability. Capture outcomes, learnings, and make a data-driven decision on whether to proceed, pivot, or halt the innitiative. Use `Innitiative - Validation` to record test results and `Innitiative - Notes` for key insights and decisions.\n\n**Validation Methods**:\n- Employ both qualitative methods (e.g., user interviews, usability testing, observation sessions) and quantitative methods (e.g., A/B tests, surveys with larger samples, usage metrics from a pilot) to gather comprehensive feedback.\n\n**Decision Making**:\n- Document clear Go/No-Go/Pivot decisions based on the validation results and pre-defined success criteria.\n- Record Key Learnings and Insights in `Innitiative - Notes` or a dedicated validation report. These insights are valuable for the current innitiative and future projects.\n\nUpdate `Innitiative - Phase` to 'Validated' or 'Rejected/Halted'. Ensure `Last Updated` field is current.",
+                  "tags": "sub_phase::testing_validation,concept::user_feedback_analysis,concept::data_driven_decision_making,concept::lean_experimentation,role>>UX Researcher,role>>Innitiative Manager,updated>>Innitiative - Validation,updated>>Innitiative - Notes,updated>>Innitiative - Phase,updated>>Last Updated,preceded_by>>Prototype Development,may_lead_to>>Full Scale Development (not in this guide)",
+                  "id": "mayed5mh96znz9"
+                }
+              ]
+            }
+          ],
+          "id": "mayed5mhlbjsiv"
+        },
+        {
+          "title": "📦Objects",
+          "content": "Key informational artifacts and data structures used within the iNNitiatives process. These objects provide the framework for documenting, tracking, and governing innovation activities.",
+          "tags": "category::artifacts,area::documentation",
+          "items": [
+            {
+              "id": "mb0t20hnx5oel",
+              "title": "iNNitiatives app",
+              "content": "The central application that serves as the primary operational tool for the iNNitiatives process. It contains dedicated modules/sections (e.g., for Opportunities and Innitiatives) for tracking their respective attributes and statuses.",
+              "tags": "artifact_type::application,purpose::data_management,purpose::tracking_tool,comprises>>Opportunities module,comprises>>Innitiatives module,used_by_role>>Innovation Manager,used_by_role>>Innitiative Manager",
+              "items": [
+                {
+                  "title": "Opportunities module",
+                  "content": "A specific module or section within the iNNitiatives app designed to log, describe, and track all identified innovation opportunities before they are potentially converted into formal innitiatives. It serves as the central registry for raw ideas and potential areas for innovation.",
+                  "tags": "data_structure::module,scope::opportunities,part_of>>iNNitiatives app",
+                  "items": [
+                    {
+                      "title": "Opportunity - ID",
+                      "content": "A unique alphanumeric identifier assigned to each opportunity for tracking and reference purposes (e.g., OPP001). Ensures unambiguous identification throughout the lifecycle.",
+                      "id": "mayed5mh56evhg",
+                      "tags": "field_type::identifier, data_format::alphanumeric, scope::opportunity"
+                    },
+                    {
+                      "title": "Opportunity - Name",
+                      "content": "A short, concise, and descriptive name for the opportunity, ideally 3 to 6 words, that captures its essence (e.g., \"Reduce Customer Onboarding Time\").",
+                      "id": "mayed5mh0nohxq",
+                      "tags": "field_type::text,scope::opportunity,guideline::conciseness"
+                    },
+                    {
+                      "title": "Opportunity - Description",
+                      "content": "A clear and detailed explanation of the context, the specific issue, unmet need, or challenge identified. It should provide actionable insight into the nature of the opportunity and why it's significant.\n\nExamples:\n- \"Multiple customer complaints highlight significant delays (avg. 3 days) in the current manual invoice approval process, leading to poor vendor relations.\"\n- \"Field technicians frequently report system downtime and data synchronization errors with the current mobile scheduling software, impacting job completion rates.\"\n- \"Recent employee engagement survey shows low scores and verbatim comments indicating unclear career development paths and limited growth opportunities.\"",
+                      "id": "mayed5mhu70bwk",
+                      "tags": "field_type::text_long,scope::opportunity,purpose::context_setting"
+                    },
+                    {
+                      "title": "Opportunity - Proposer",
+                      "content": "The individual, team, or department that identified, suggested, and/or initially registered the opportunity.\n\nExamples:\n- Evelio Galindo\n- Mendo Salazar\n- Judy Maxwell",
+                      "id": "mayed5mhjph34s",
+                      "tags": "field_type::text, scope::opportunity, purpose::attribution"
+                    },
+                    {
+                      "title": "Opportunity - Priority",
+                      "content": "A numeric value, typically on a scale (e.g., 0 for low, 9 for high), assigned based on strategic relevance, urgency, potential impact, and/or other defined criteria. This helps in ranking and selection.",
+                      "id": "mayed5mh9weidx",
+                      "tags": "field_type::numeric,scope::opportunity,purpose::ranking"
+                    }
+                  ],
+                  "id": "mayed5mhqk0w63"
+                },
+                {
+                  "title": "Innitiatives module",
+                  "content": "A specific module or section within the iNNitiatives app dedicated to managing the lifecycle of all active innovation innitiatives. It tracks key information from idea definition through validation for each selected project.",
+                  "tags": "data_structure::module, scope::innitiatives, part_of>>iNNitiatives app",
+                  "items": [
+                    {
+                      "title": "Innitiative - ID",
+                      "content": "A unique alphanumeric identifier for each innitiative (e.g., INN-2024-002), distinct from Opportunity IDs, used for tracking its specific development lifecycle.",
+                      "id": "mayed5mh3no5e7",
+                      "tags": "field_type::identifier,data_format::alphanumeric,scope::innitiative"
+                    },
+                    {
+                      "title": "Innitiative - Name",
+                      "content": "A concise, meaningful, and easily recognizable name for the innitiative (e.g., \"Automated Invoice Workflow Pilot\").",
+                      "id": "mayed5mhmjh97s",
+                      "tags": "field_type::text,scope::innitiative,guideline::clarity"
+                    },
+                    {
+                      "title": "Innitiative - Type",
+                      "content": "The category or nature of the innitiative, helping to classify it. Examples: Process Improvement, New Product Development, Service Enhancement, Technology Exploration, Business Model Innovation.",
+                      "id": "mayed5mhf5cnbi",
+                      "tags": "field_type::text_choice,scope::innitiative,purpose::classification"
+                    },
+                    {
+                      "title": "Innitiative - Phase",
+                      "content": "Current stage of development within the Innitiative Management lifecycle. Examples: Idea Definition, Concept Design, Prototype Development, Validated, Halted, Implemented.",
+                      "id": "mayed5mhlhfeem",
+                      "tags": "field_type::text_choice,scope::innitiative,purpose::status_tracking"
+                    },
+                    {
+                      "title": "Innitiative - Manager",
+                      "content": "The person assigned the [[Innitiative Manager]] role, responsible for leading and driving the execution of this specific innitiative.\n\nExamples:\n- Judy Maxwell\n- Project Team Alpha Lead",
+                      "id": "mayed5mhd7bnqb",
+                      "tags": "field_type::person_name,scope::innitiative,links_to_role>>Innitiative Manager"
+                    },
+                    {
+                      "title": "Innitiative - Customer",
+                      "content": "The primary target user, segment, or beneficiary for whom the innitiative's solution is being developed. Being specific helps in user-centered design.\n\nExamples:\n- Frontline employees in the finance department\n- Field service technicians using mobile devices\n- Mid-size business clients in the SaaS sector\n- Internal HR department",
+                      "id": "mayed5mh2hsrtt",
+                      "tags": "field_type::text,scope::innitiative,purpose::user_focus"
+                    },
+                    {
+                      "title": "Innitiative - Problem",
+                      "content": "A clear and concise statement of the specific customer or business problem, pain point, or unmet need that the innitiative aims to solve.\n\nExamples:\n- \"Manual invoice approval process creates significant bottlenecks, delaying payments and straining vendor relationships.\"\n- \"Lack of real-time scheduling visibility leads to inefficient dispatching of field technicians and missed SLAs.\"\n- \"Low employee motivation and high turnover in junior roles are linked to unclear promotion criteria and perceived lack of growth.\"",
+                      "id": "mayed5mhg0tyf4",
+                      "tags": "field_type::text_long,scope::innitiative,purpose::problem_statement"
+                    },
+                    {
+                      "title": "Innitiative - Solution",
+                      "content": "A brief but clear description of the proposed solution, product, service, or process change that the innitiative will develop and test.\n\nExamples:\n- \"Introduce an automated workflow system for invoice approvals with digital routing and notifications.\"\n- \"Deploy a new mobile-first scheduling system with real-time GPS tracking and dynamic job assignment for technicians.\"\n- \"Launch a gamified career development platform with transparent skill mapping, learning modules, and mentorship connections.\"",
+                      "id": "mayed5mhprnjjo",
+                      "tags": "field_type::text_long,scope::innitiative,purpose::solution_overview"
+                    },
+                    {
+                      "title": "Innitiative - Value",
+                      "content": "The expected primary benefit, impact, or value proposition that the solution will deliver to the customer or the business. This is often the main hypothesis being tested.\n\nExamples:\n- \"Reduce average invoice approval cycle time by 40% within 6 months of implementation.\"\n- \"Improve field technician productivity (jobs per day) by 20% and reduce travel time by 15%.\"\n- \"Boost employee retention in targeted roles by 15% year-over-year and improve engagement scores by 10 points.\"",
+                      "id": "mayed5mh054vv2",
+                      "tags": "field_type::text_long,scope::innitiative,purpose::value_proposition"
+                    },
+                    {
+                      "title": "Innitiative - Validation",
+                      "content": "Summary of key results, findings, and evidence gathered from real-world testing, experiments, or pilots of the prototype/MVP. Indicates whether hypotheses were confirmed or refuted.\n\nExamples:\n- \"Pilot test showed time-to-approve invoices reduced by an average of 60% (exceeding 40% target); 95% user satisfaction with new system.\"\n- \"A/B test of two scheduling algorithms: Algorithm B resulted in 25% more on-time appointments and 10% less idle time for technicians.\"\n- \"Post-launch survey of gamified platform users: 70% report increased clarity in career path options; 30% active participation in new learning modules.\"",
+                      "id": "mayed5mhhcr5zc",
+                      "tags": "field_type::text_long,scope::innitiative,purpose::test_results"
+                    },
+                    {
+                      "title": "Innitiative - Next Steps",
+                      "content": "Specific, actionable immediate tasks or activities planned after the current stage is completed. Should include decisions on further testing, iteration, scaling, or halting the innitiative.\n\nExamples:\n- \"Refine prototype based on user feedback and conduct second round of usability testing with 10 new users.\"\n- \"Develop a detailed business case for full-scale implementation based on positive validation results.\"\n- \"Halt further development; key technical assumption proved invalid. Document learnings for future projects.\"",
+                      "id": "mayed5mhjnwgjr",
+                      "tags": "field_type::text_long,scope::innitiative,purpose::action_planning"
+                    },
+                    {
+                      "title": "Innitiative - Goals",
+                      "content": "Specific, measurable, achievable, relevant, and time-bound (SMART) key metrics or success criteria used to evaluate the progress and success of the innitiative at various stages, especially during validation.\n\nExamples:\n- \"Achieve user onboarding completion time of < 3 minutes for 90% of new users during prototype testing.\"\n- \"Validate that 75% of pilot users can complete core task X successfully without assistance.\"\n- \"Secure commitment from 3 departments to adopt the solution post-pilot.\"",
+                      "id": "mayed5mhwy609w",
+                      "tags": "field_type::text_long,scope::innitiative,purpose::success_criteria"
+                    },
+                    {
+                      "title": "Innitiative - Budget",
+                      "content": "Estimated or allocated financial cost required for the execution of the innitiative, potentially broken down by phase (e.g., $5,000 for prototype phase, $50,000 for pilot).",
+                      "id": "mayed5mh17ii35",
+                      "tags": "field_type::currency,scope::innitiative,purpose::financial_planning"
+                    },
+                    {
+                      "title": "Innitiative - Resources",
+                      "content": "List of required non-financial resources, such as personnel (roles, FTEs), specific tools, technologies, equipment, or systems.\n\nExamples:\n- \"1 UX designer (0.5 FTE for 3 weeks), 2 Backend Developers (Full-time for 1 month), Figma access, UserTesting.com subscription.\"\n- \"Access to production data (anonymized) for model training.\"",
+                      "id": "mayed5mhopijhm",
+                      "tags": "field_type::text_long,scope::innitiative,purpose::resource_identification"
+                    },
+                    {
+                      "title": "Innitiative - Risks",
+                      "content": "Identification of potential challenges, uncertainties, or threats that could negatively affect the innitiative's success, along with potential mitigation ideas if known.\n\nExamples:\n- \"Risk: Low user adoption of new platform. Mitigation: Involve users early in design, provide comprehensive training.\"\n- \"Risk: Budget overruns due to unforeseen technical complexities. Mitigation: Build in 15% contingency, conduct thorough technical spike first.\"\n- \"Risk: Changes in regulatory compliance affecting solution design. Mitigation: Engage legal/compliance team early for review.\"",
+                      "id": "mayed5mh24jh0h",
+                      "tags": "field_type::text_long,scope::innitiative,purpose::risk_management"
+                    },
+                    {
+                      "title": "Innitiative - Opportunity",
+                      "content": "Reference ID (e.g., `OP-2024-001`) of the specific opportunity from the 'Opportunities module' that triggered or led to the creation of this innitiative. Establishes traceability.",
+                      "id": "mayed5mh1qpczp",
+                      "tags": "field_type::reference_id,scope::innitiative,links_to_object>>Opportunity - ID,purpose::traceability"
+                    },
+                    {
+                      "title": "Innitiative - Date Registered",
+                      "content": "The date (YYYY-MM-DD format) when the innitiative was formally recorded or created in the system.",
+                      "id": "mayed5mh52y01n",
+                      "tags": "field_type::date,scope::innitiative,purpose::auditing"
+                    },
+                    {
+                      "title": "Innitiative - Notes",
+                      "content": "A free-form text field for capturing any other relevant context, decisions, observations, key learnings, stakeholder comments, or miscellaneous information not suitable for other structured fields.",
+                      "id": "mayed5mh2yfktn",
+                      "tags": "field_type::text_long,scope::innitiative,purpose::contextual_information"
+                    }
+                  ],
+                  "id": "mayed5mhzv7jft"
+                }
+              ]
+            },
+            {
+              "id": "mb0t33xuq1l60",
+              "title": "iNNitiatives Doc",
+              "content": "A comprehensive document that contains all high-level configuration data and governance framework for the innovation program. It includes definitions of necessary roles and the individuals filling them, meeting periodicities, decision-making processes, adopted methodologies, and standard tools. The information in this document is at the program level, not for individual innovation initiatives. It is created at the beginning of the program and must be reviewed and updated periodically (e.g., quarterly or annually) to reflect program evolution.\n\nThis document must be subject to version control following the Semantic Versioning standard (e.g., V1.0.0, V1.1.0).\n\n### Key Sections:\n\n1.  **General Innovation Program Information**\n    *   **Program Name:** Official name of the innovation program (default: iNNitiatives Innovation Program [Organization Name]).\n    *   **Program Vision & Mission:** High-level statements defining the long-term aspiration and purpose of the innovation program.\n    *   **Strategic Objectives:** Specific, measurable goals the program aims to achieve, aligned with overall business strategy.\n    *   **Scope:** Defines the boundaries of the program – what types of innovation are in/out of scope (e.g., incremental, radical, specific business units).\n    *   **Start Date & Expected Duration:** Date program was launched and its planned timeframe (e.g., ongoing, 3-year cycle).\n    *   **Current Status:** Overall status of the program (e.g., Planning, Active, Scaling, Paused).\n2.  **Organizational Structure and Roles**\n    *   **Innovation Sponsor:** Name, contact, and detailed responsibilities of the executive sponsor.\n    *   **Innovation Manager:** Name, contact, and detailed responsibilities of the program manager.\n    *   **Innovation Committee/Council:** Purpose, composition (members and their roles), meeting frequency, and decision-making authority and responsibilities.\n    *   **Innitiative Managers:** General expectations for individuals managing specific initiatives (specific assignments are in the iNNitiatives app).\n    *   **Other Key Stakeholders:** Identification of other critical roles or departments involved (e.g., Legal, Finance, IT, Marketing).\n3.  **Program Governance**\n    *   **Decision-Making Process:** Clear outline of how key decisions are made (e.g., opportunity selection, initiative funding, phase-gate approvals), including criteria and authorities.\n    *   **Program-Level Success Metrics (KPIs):** How the overall success of the innovation program will be measured (e.g., number of validated initiatives, ROI from innovations, impact on strategic goals, employee engagement in innovation).\n    *   **Reporting & Communication Cadence:** Frequency, format, and audience for program progress reports and stakeholder communications.\n    *   **Phase-Gate Criteria:** Standard criteria for approving initiatives to move from one phase to the next (e.g., from Concept to Prototype).\n4.  **Budget and Resource Management (Program Level)**\n    *   **Overall Program Budget:** Total budget allocated to the innovation program, and process for budget requests/allocation.\n    *   **Resource Allocation Principles:** How central resources (if any) are distributed to different initiatives or phases. Specific resource assignments to initiatives are tracked in the [[iNNitiatives app]].\n    *   **Expense Approval Process:** Procedure for approving program-related expenditures.\n5.  **Innovation Methodology & Process**\n    *   **Adopted Methodological Approach:** Description of the core innovation methodology used (e.g., iNNitiatives, Design Thinking, Lean Startup, Stage-Gate), including any organization-specific adaptations.\n    *   **Innovation Lifecycle Stages:** Detailed description of the different stages that compose the defined innovation process (as outlined in 🛠️Work section).\n    *   **Standard Evaluation Criteria:** General metrics and criteria used to evaluate opportunities and initiatives at each stage.\n6.  **Communication and Engagement Strategy**\n    *   **Internal Communication Plan:** How program progress, successes, and learnings will be communicated to internal stakeholders and the wider organization.\n    *   **External Communication (if applicable):** Guidelines for communicating about innovation efforts externally.\n    *   **Employee Engagement Mechanisms:** How employees will be encouraged to participate, contribute ideas, and stay informed (e.g., idea portals, innovation challenges, newsletters).\n    *   **Feedback Collection:** How feedback on the program itself is collected and used for continuous improvement.\n7.  **Tools and Platforms**\n    *   **iNNitiatives app:** Role and usage guidelines within the program.\n    *   **Idea Management Platform (if any):** Description of tools used for broad idea capture and initial screening, if separate from the iNNitiatives app.\n    *   **Collaboration Platforms:** Recommended tools for team collaboration (e.g., Slack, Teams, Miro).\n    *   **Document Repository:** Link and guidelines for the official program document repository.\n8.  **Program Calendar Highlights**\n    *   Key recurring events like Innovation Committee meetings, strategic review sessions, training schedules, major deadlines for calls for ideas.\n    *   (Detailed scheduling is in the [[iNNitiatives Calendar]]).\n\n**Maintenance and Update:**\n\n*   This document must be reviewed and updated at least quarterly (or as needed) by the [[Innovation Manager]].\n*   Significant updates must be reviewed and approved by the [[Innovation Sponsor]] and/or Innovation Committee.\n\n**Revision History:**\n\n*   A dedicated section or table tracking: Version Number, Revision Date, Summary of Changes, Author/Reviser.",
+              "tags": "artifact_type::document, purpose::governance, purpose::strategic_framework, concept::version_control, scope::program_level, managed_by_role>>Innovation Manager, approved_by_role>>Innovation Sponsor, references_object>>iNNitiatives app, references_object>>iNNitiatives Calendar",
+              "items": []
+            },
+            {
+              "id": "mb0t3szmoasyb",
+              "title": "iNNitiatives Calendar",
+              "content": "A shared calendar that includes all key events, deadlines, and meetings relevant to the innovation program. It serves as a central scheduling resource for all participants, ensuring awareness and coordination of program activities.\n\n### Key Elements Included:\n\n1.  **Deadlines for Idea/Proposal Submissions:**\n\t*   The calendar must clearly mark all important deadlines for submitting opportunities or proposals for specific innovation challenges or funding rounds. Example: `Opportunity Submission Deadline - Q3 Cycle: 2024-07-15`.\n2.  **Innovation Committee/Council Review Meetings:**\n\t*   Scheduled dates and times for all regular and ad-hoc meetings of the innovation committee where opportunities are evaluated, initiatives are approved, and strategic decisions are made. Example: `Monthly Innovation Committee Review: First Tuesday of each month, 10:00 AM - 12:00 PM, Conference Room A`.\n3.  **Training Workshops, Bootcamps, and Ideation Sessions:**\n\t*   Dates and details for all scheduled training workshops (e.g., Design Thinking, Prototyping), innovation bootcamps, and organized brainstorming or ideation sessions designed to foster innovation skills and generate new ideas. Example: `Advanced Prototyping Workshop: 2024-04-01, 9:00 AM - 5:00 PM, Training Center`.\n4.  **Networking Events, Demo Days, and Presentations:**\n\t*   Information about internal or external networking events, innitiative demo days, and formal presentations of innovation projects to stakeholders or the wider organization. Example: `Quarterly Innitiative Showcase & Demo Day: 2024-05-20, 2:00 PM - 4:00 PM, Auditorium`.\n5.  **Key Innitiative Milestones and Gate Reviews:**\n\t*   Major milestones for significant innitiatives and scheduled gate review meetings where progress is assessed against set criteria before proceeding to the next phase. Example: `Gate Review - INN005 (Alpha Pilot Completion): 2024-06-10`.\n6.  **Program Reporting Deadlines:**\n    *   Dates when periodic program reports are due for submission to sponsors or steering committees.\n\n### Calendar Management and Update:\n\n*   The calendar must be managed centrally, typically by the [[Innovation Manager]] or a designated program coordinator.\n*   The manager is responsible for keeping it accurate and up-to-date, ensuring all events are correctly scheduled with necessary details (location, agenda, attendees), and that relevant participants are invited or notified.\n*   It is highly recommended to use a shared online calendar platform (e.g., Google Calendar, Microsoft Outlook Calendar, a shared team calendar in a collaboration tool) to facilitate easy access, visibility, and synchronization for all program participants.",
+              "tags": "artifact_type::calendar, purpose::scheduling, purpose::event_coordination, scope::program_level, managed_by_role>>Innovation Manager, used_by_role>>Innovation Sponsor, used_by_role>>Innitiative Manager, used_by_role>>Innitiative Contributor",
+              "items": []
+            }
+          ],
+          "id": "mayed5mhelrkla"
+        },
+        {
+          "title": "🧰Tools",
+          "content": "The set of software and platforms recommended or mandated for use within the iNNitiatives innovation process. Primarily features the iNNitiatives app, but can include others supporting specific activities.",
+          "tags": "catalog>>Tools,area::resources",
+          "items": [
+            {
+              "title": "iNNitiatives app",
+              "content": "The primary application used for the iNNitiatives process. It serves as the central tool for documenting, tracking, and coordinating the entire innovation workflow, offering collaborative features and data manipulation capabilities.",
+              "tags": "tool_type::application_software,purpose::data_management,purpose::collaboration,implements_object>>iNNitiatives app",
+              "id": "mayed5mh76drpl"
+            },
+            {
+              "id": "maz3rpabhjcdm",
+              "title": "iNNitiatives AI assistant",
+              "content": "A conceptual or actual AI-powered assistant designed to augment the iNNitiatives process. Potential functionalities include: analyzing data from the iNNitiatives app to identify trends in opportunities, suggesting relevant information or resources for active innitiatives, drafting initial summaries or reports, or assisting with risk identification based on historical data.",
+              "tags": "tool_type::ai_assistant,purpose::process_automation,purpose::data_analysis,purpose::decision_support,status::conceptual_or_in_development,integrates_with>>iNNitiatives app,supports_role>>Innovation Manager",
+              "items": []
+            },
+            {
+              "id": "mb0t1nk3srnk2",
+              "title": "Collaboration Platforms",
+              "content": "Digital tools and platforms that facilitate communication, shared virtual workspaces, and real-time collaboration among team members, stakeholders, and contributors involved in the innovation program. These are crucial for distributed teams and agile ways of working.\n\nExamples: Slack, Microsoft Teams (for communication and file sharing); Miro, Mural, FigJam (for virtual whiteboarding, brainstorming, and workshop facilitation).",
+              "tags": "tool_type::collaboration_software,purpose::team_communication,purpose::ideation_support,purpose::remote_collaboration,supports_process>>Innitiative Management,supports_role>>Innitiative Contributor,supports_role>>Innitiative Manager",
+              "items": []
+            }
+          ],
+          "id": "mayed5mh1142hp"
+        },
+        {
+          "title": "💼Roles",
+          "content": "Defined roles and responsibilities within the iNNitiatives innovation process, clarifying who is accountable for what aspects of the program and individual innitiatives.",
+          "tags": "catalog>>Roles,area::governance",
+          "items": [
+            {
+              "title": "Innovation Sponsor",
+              "content": "An executive-level leader who champions the innovation program. Responsibilities include: providing strategic direction, securing and allocating resources (budget, personnel), removing organizational roadblocks, prioritizing high-impact opportunities, making final go/no-go decisions on major initiatives, and advocating for innovation culture within the organization.",
+              "id": "mayed5mhlpie5q",
+              "tags": "role_type::executive_leadership,responsibility::strategic_oversight,responsibility::resource_advocacy,responsibility::decision_making_final"
+            },
+            {
+              "title": "Innovation Manager",
+              "content": "Accountable for the overall operational management and success of the innovation program. Responsibilities include: facilitating the innovation process (from opportunity generation to validation oversight), managing the iNNitiatives app and other program tools, coordinating the Innovation Committee, reporting on program performance, training participants, and fostering an environment conducive to innovation.",
+              "id": "mayed5mhxp0j2l",
+              "tags": "role_type::program_management,responsibility::process_facilitation,responsibility::tool_administration,responsibility::performance_reporting"
+            },
+            {
+              "title": "Innitiative Manager",
+              "content": "Responsible for leading, managing, and delivering a specific innovation innitiative from its definition through to validation (and potentially beyond). Responsibilities include: developing the innitiative plan, managing its budget and resources, coordinating the innitiative team/contributors, tracking progress, managing risks, and reporting status to the Innovation Manager and stakeholders.",
+              "id": "mayed5mhrkookq",
+              "tags": "role_type::project_lead,responsibility::initiative_execution,responsibility::team_coordination,responsibility::stakeholder_communication_initiative"
+            },
+            {
+              "title": "Innitiative Contributor",
+              "content": "An individual who actively supports the development of an innitiative by providing specific expertise, performing tasks, contributing ideas, participating in workshops, or offering feedback. This is a general role, and contributors can have specialized skills (e.g., technical expert, market analyst, UX designer not formally assigned as 'Designer').",
+              "id": "mayed5mhy25h9s",
+              "tags": "role_type::team_member,responsibility::task_completion,responsibility::expertise_provision,responsibility::feedback_contribution"
+            },
+            {
+              "id": "mb1productowner",
+              "title": "Product Owner (Innitiative Specific)",
+              "content": "Within a specific innitiative (especially those developing a product or service), this role defines and champions the vision for the solution. Responsibilities include: understanding and representing customer needs, defining and prioritizing features or experiments (e.g., for a backlog), and ensuring the work of the development team aligns with the overall innitiative goals. Often filled by the Innitiative Manager or a dedicated specialist.",
+              "tags": "role_type::specialist_contributor,responsibility::product_vision,responsibility::requirements_prioritization,scope::innitiative_level",
+              "items": []
+            },
+            {
+              "id": "mb1designer",
+              "title": "Designer (UX/UI/Service - Innitiative Specific)",
+              "content": "Responsible for the user experience (UX), user interface (UI), or service design aspects of an innitiative's solution. Responsibilities include: conducting user research, creating wireframes, mockups, interactive prototypes, service blueprints, and ensuring the solution is usable, desirable, and accessible. Works closely with the Product Owner and UX Researcher.",
+              "tags": "role_type::specialist_contributor,responsibility::user_experience_design,responsibility::prototyping_visual,responsibility::service_design,scope::innitiative_level",
+              "items": []
+            },
+            {
+              "id": "mb1uxresearcher",
+              "title": "UX Researcher (Innitiative Specific)",
+              "content": "Focuses on understanding user behaviors, needs, and motivations through various research methods. Responsibilities include: planning and conducting user research (interviews, surveys, usability tests), analyzing findings, creating user personas and journey maps, and providing actionable insights to inform design and validation of an innitiative.",
+              "tags": "role_type::specialist_contributor,responsibility::user_research_execution,responsibility::feedback_synthesis,responsibility::validation_support,scope::innitiative_level",
+              "items": []
+            }
+          ],
+          "id": "mayed5mho1l96j"
+        },
+        {
+          "id": "mazv3tm2ou15y",
+          "title": "📜Guiding Principles",
+          "content": "Core beliefs and values that underpin the iNNitiatives process, guiding behavior and decision-making throughout the innovation lifecycle.\n\n1.  **User-Centricity:** Always start with the user/customer problem or unmet need.\n2.  **Iterative Progress:** Embrace experimentation, learning, and adaptation. Fail fast, learn faster.\n3.  **Collaboration is Key:** Innovation thrives on diverse perspectives and teamwork.\n4.  **Data-Informed Decisions:** Use evidence and insights to guide choices, not just gut feeling.\n5.  **Bias for Action:** Move from ideas to tangible prototypes and tests quickly.\n6.  **Transparency:** Ensure processes, decisions, and progress are visible to stakeholders.\n7.  **Strategic Alignment:** Focus innovation efforts on areas that support the organization's strategic goals.",
+          "tags": "category::principles,area::culture,concept::innovation_mindset",
+          "items": []
+        }
+      ],
+      "id": "mayed5mh21sswh"
+    }
+  ]
+}

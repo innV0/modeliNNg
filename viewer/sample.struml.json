@@ -1,0 +1,23 @@
+{
+  "title": "Sample Document",
+  "tags": "example",
+  "items": [
+    {
+      "title": "Section A",
+      "content": "Introduction section",
+      "tags": "intro",
+      "items": [
+        {
+          "title": "Subsection A1",
+          "content": "Details of A1",
+          "tags": "detail"
+        }
+      ]
+    },
+    {
+      "title": "Section B",
+      "content": "Another top section",
+      "tags": "main"
+    }
+  ]
+}

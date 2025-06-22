@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>StruML Viewer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="icon" href="data:,">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+</head>
+<body class="p-4">
+  <div id="app" class="max-w-4xl mx-auto">
+    <h1 class="text-2xl font-bold mb-4">StruML Viewer</h1>
+    <div class="mb-4">
+      <input type="file" @change="openFile" accept="application/json" class="block">
+      <button @click="downloadMarkdown" class="mt-2 bg-blue-500 text-white px-3 py-1 rounded mr-2">Export Markdown</button>
+      <button @click="downloadHTML" class="mt-2 bg-green-500 text-white px-3 py-1 rounded">Export HTML</button>
+    </div>
+    <template v-if="model.items && model.items.length">
+      <viewer v-for="(it, i) in model.items" :key="i" :item="it" :depth="1"></viewer>
+    </template>
+  </div>
+
+  <script>
+    Vue.component('viewer', {
+      props: ['item', 'depth'],
+      computed: {
+        tag() {
+          return 'h' + Math.min(this.depth, 6);
+        },
+        next() {
+          return this.depth + 1;
+        }
+      },
+      template: `
+        <div :class="'ml-' + depth * 4 + ' mb-4'">
+          <component :is="tag" class="font-bold">{{ item.title }}</component>
+          <p v-if="item.tags" class="text-sm text-gray-500">Tags: {{ item.tags }}</p>
+          <p v-if="item.content" class="mb-2">{{ item.content }}</p>
+          <viewer v-for="(sub, idx) in item.items" :key="idx" :item="sub" :depth="next"></viewer>
+        </div>
+      `
+    });
+
+    new Vue({
+      el: '#app',
+      data: { model: { items: [] } },
+      created() {
+        fetch('sample.struml.json')
+          .then(res => res.ok ? res.json() : null)
+          .then(json => { if (json) this.model = json; })
+          .catch(() => {});
+      },
+      methods: {
+        openFile(e) {
+          const file = e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = ev => {
+            try {
+              this.model = JSON.parse(ev.target.result);
+            } catch {
+              alert('Invalid JSON file');
+            }
+          };
+          reader.readAsText(file);
+        },
+        downloadMarkdown() {
+          this.saveFile(this.toMarkdown(this.model), 'export.md', 'text/markdown');
+        },
+        downloadHTML() {
+          this.saveFile(this.toHTML(this.model), 'export.html', 'text/html');
+        },
+        saveFile(content, name, type) {
+          const blob = new Blob([content], { type });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = name;
+          a.click();
+          URL.revokeObjectURL(url);
+        },
+        toMarkdown(data) {
+          const walk = (it, depth=1) => {
+            const parts = [`${'#'.repeat(depth)} ${it.title}`];
+            if (it.tags) parts.push(`*Tags:* ${it.tags}`);
+            if (it.content) parts.push(it.content);
+            (it.items || []).forEach(sub => parts.push(walk(sub, depth+1)));
+            return parts.join('\n\n');
+          };
+          return (data.items || []).map(i => walk(i)).join('\n\n');
+        },
+        toHTML(data) {
+          const walk = (it, depth=1) => {
+            const out = [`<h${depth}>${this.escape(it.title)}</h${depth}>`];
+            if (it.tags) out.push(`<p class="tags">${this.escape(it.tags)}</p>`);
+            if (it.content) out.push(`<p>${this.escape(it.content)}</p>`);
+            (it.items || []).forEach(sub => out.push(walk(sub, depth+1)));
+            return out.join('\n');
+          };
+          const body = (data.items || []).map(i => walk(i)).join('\n');
+          return '<!DOCTYPE html>\n<html>\n<body>\n' + body + '\n</body>\n</html>';
+        },
+        escape(str) {
+          const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+          return str ? str.replace(/[&<>"']/g, ch => map[ch]) : '';
+        }
+      }
+    });
+  </script>
+</body>
+</html>
