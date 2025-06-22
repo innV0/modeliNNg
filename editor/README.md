@@ -1,12 +1,22 @@
-# StruML: Structured Modeling Language
+# StruML: Structured Modeling Language Editor
 
-StruML is a comprehensive single-page application designed to empower users to create, manage, and visualize structured documents with hierarchical items, tags, and inter-item relationships. This document provides end users and developers with an in-depth understanding of the application’s functionality, setup, code organization, and architectural design.
+StruML is a comprehensive single-page application designed to empower users to create, manage, and visualize structured documents with hierarchical items, tags, and inter-item relationships. This document provides end users and developers with an in-depth understanding of the application's functionality, setup, code organization, and architectural design.
+
+## Role in modeliNNg
+
+The StruML Editor is one of the two main components of the modeliNNg project:
+
+- **Editor Module (StruML)**: Provides a full-featured environment for creating and editing structured JSON documents with hierarchical items, tags, and relationships.
+- **Viewer Module**: Offers a streamlined interface for viewing and navigating the documents created with the editor.
+
+While both modules can function independently, they are designed to work together as part of an integrated system for structured document creation and visualization.
 
 --------------------------------------------------
 
 ## Table of Contents
 
-- [StruML: Structured Modeling Language](#struml-structured-modeling-language)
+- [StruML: Structured Modeling Language Editor](#struml-structured-modeling-language-editor)
+  - [Role in modeliNNg](#role-in-modelinng)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Key Features](#key-features)
@@ -77,7 +87,7 @@ StruML offers a modern and intuitive interface for organizing domain knowledge t
 
 2. **Initial Setup**:  
    - Once loaded, the application automatically retrieves any previously saved documents from local storage.
-   - You may start by selecting “New Document” to create a fresh workspace.
+   - You may start by selecting "New Document" to create a fresh workspace.
 
 ### Document Management
 
@@ -210,7 +220,7 @@ The core functionality is distributed across several JavaScript modules:
   - The code is organized in a modular fashion where each component or utility serves a distinct purpose. This promotes reusability and easier debugging.
   
 - **State Handling**:  
-  - Although currently based on plain JavaScript, the application’s state management approach is structured to transition into more robust libraries like Zustand.
+  - Although currently based on plain JavaScript, the application's state management approach is structured to transition into more robust libraries like Zustand.
 
 ### File System & Deployment
 
@@ -245,7 +255,7 @@ The core functionality is distributed across several JavaScript modules:
   - Maintain consistency in style and function naming conventions.
   
 - **Pull Requests & Code Reviews**:  
-  - Contribute via pull requests on GitHub where detailed code reviews ensure adherence to the project’s guidelines.
+  - Contribute via pull requests on GitHub where detailed code reviews ensure adherence to the project's guidelines.
   - Developers are encouraged to write tests and maintain documentation for new features or significant changes.
 
 ### Troubleshooting & Future Enhancements
@@ -268,7 +278,7 @@ StruML is released under the MIT License. See the [LICENSE](LICENSE) file for de
 
 ## Contact & Support
 
-For issues, enhancements, or general inquiries, please open an issue on GitHub or contact the development team via the project’s support channels.
+For issues, enhancements, or general inquiries, please open an issue on GitHub or contact the development team via the project's support channels.
 
 --------------------------------------------------
 

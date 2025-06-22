@@ -9,52 +9,20 @@
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-<!-- ========================================= -->
-<!-- CONFIGURATION SETTINGS - EDIT HERE      -->
-<!-- ========================================= -->
 <script>
-/**
- * APP_CONFIG: Central configuration object for the JSON Viewer application.
- * These settings can be customized directly in this block or overridden by URL parameters.
- *
- * Available options:
- *  - appName: (String) The name of the application displayed in the header.
- *  - version: (String) The version number of the application.
- *  - showHeader: (Boolean) Controls the visibility of the main application header.
- *  - showFooter: (Boolean) Controls the visibility of the main application footer.
- *  - showSidebar: (Boolean) Controls the visibility of the tree navigation sidebar.
- *  - defaultFile: (String) URL or path to a JSON file to load by default when the app starts.
- *                 Can be a relative path (e.g., 'data.json') or a full URL.
- *  - logoUrl: (String) URL or path to the logo image displayed in the header and file upload section.
- */
 const APP_CONFIG = {
-    // Application Info
     appName: 'JSON Viewer',
     version: '1.2.0',
     
-    // UI Components Visibility
     showHeader: true,
     showFooter: false,
     showSidebar: true,
     
-    // Default File Loading
-    defaultFile: '', // e.g., 'data.json' or 'https://example.com/data.json'
+    defaultFile: '',
     
-    // Logo Configuration
     logoUrl: 'https://innv0.com/assets/innv0_logo.svg'
 };
 
-// =====================================================================================
-// URL Parameter Overrides:
-// The following URL parameters can be used to override the default APP_CONFIG settings:
-//  - showHeader: (true/false) e.g., ?showHeader=false
-//  - showFooter: (true/false) e.g., ?showFooter=true
-//  - showSidebar: (true/false) e.g., ?showSidebar=false
-//  - defaultFile: (URL or path string) e.g., ?defaultFile=https://example.com/mydata.json
-//  - version: (String) e.g., ?version=1.3.0
-//  - appName: (String) e.g., ?appName=My%20JSON%20Explorer
-//  - logoUrl: (URL or path string) e.g., ?logoUrl=my_logo.png
-// =====================================================================================
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('showHeader') !== null) APP_CONFIG.showHeader = urlParams.get('showHeader') === 'true';
 if (urlParams.get('showFooter') !== null) APP_CONFIG.showFooter = urlParams.get('showFooter') === 'true';
@@ -64,7 +32,6 @@ if (urlParams.get('version')) APP_CONFIG.version = urlParams.get('version');
 if (urlParams.get('appName')) APP_CONFIG.appName = urlParams.get('appName');
 if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
 </script>
-<!-- ========================================= -->
 
 <script>
     tailwind.config = {
@@ -87,21 +54,14 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
 </script>
 <style>
     [v-cloak] { display: none; }
-    /* .tree-node styles removed */
-    /* .tree-node:hover styles removed */
     .breadcrumb-arrow::after {
         content: '›';
-        margin: 0 8px; /* Tailwind: mx-2 */
-        color: #666666; /* Tailwind: text-gray-500 */
+        margin: 0 8px;
+        color: #666666;
     }
     .breadcrumb-arrow:last-child::after {
         display: none;
     }
-    /* .array-item styles removed */
-
-    /* .tag styles removed and should be replaced by Tailwind classes in the templates:
-       inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium mr-1 mb-1 whitespace-nowrap
-    */
     .tag-type {
         background-color: rgba(59, 130, 246, 0.1);
         color: #3b82f6;
@@ -131,13 +91,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
     .tag-relation:hover {
         background-color: rgba(139, 92, 246, 0.2);
     }
-    /* .field-heading styles removed */
-    /* .field-heading:first-child styles removed */
-    /* .field-id styles removed */
-    /* .field-compact styles removed */
-    /* .field-compact .field-label styles removed */
-    /* .field-compact .field-value styles removed */
-
     .markdown-content {
         line-height: 1.6;
     }
@@ -158,35 +111,29 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
         padding-left: 1.5em;
     }
     .markdown-content code {
-        background-color: #f3f4f6; /* Tailwind: bg-gray-100 */
-        padding: 2px 4px; /* Tailwind: px-1 py-0.5 */
-        border-radius: 3px; /* Tailwind: rounded-sm */
-        font-family: monospace; /* Tailwind: font-mono */
+        background-color: #f3f4f6;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-family: monospace;
         font-size: 0.9em;
     }
     .markdown-content pre {
-        background-color: #f3f4f6; /* Tailwind: bg-gray-100 */
-        padding: 12px; /* Tailwind: p-3 */
-        border-radius: 6px; /* Tailwind: rounded-md */
+        background-color: #f3f4f6;
+        padding: 12px;
+        border-radius: 6px;
         overflow-x: auto;
         margin-bottom: 1em;
     }
     .markdown-content blockquote {
-        border-left: 4px solid #d1d5db; /* Tailwind: border-l-4 border-gray-300 */
-        padding-left: 1em; /* Tailwind: pl-4 */
-        margin: 1em 0; /* Tailwind: my-4 */
-        color: #6b7280; /* Tailwind: text-gray-500 */
+        border-left: 4px solid #d1d5db;
+        padding-left: 1em;
+        margin: 1em 0;
+        color: #6b7280;
     }
-    
-    /* Drag and Drop Styles */
-    /* .drop-zone styles removed */
-    /* .drop-zone.drag-over styles removed */
-    /* .drop-zone.drag-over .drop-content styles removed */
-</style>
+    </style>
 </head>
 <body class="bg-white">
 <div id="app" class="json-explorer-app" v-cloak>
-    <!-- Notification System -->
     <div
         v-if="showNotification"
         id="notification-popup"
@@ -213,7 +160,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
         </div>
     </div>
 
-    <!-- Header -->
     <header id="main-header" v-if="config.showHeader" class="app-header bg-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
@@ -230,9 +176,7 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
         </div>
     </header>
 
-    <!-- Main Content -->
     <div id="main-container" class="main-container max-w-7xl mx-auto px-4 py-6">
-        <!-- File Upload Section -->
         <div id="file-upload-section" v-if="!jsonData" class="file-upload-section text-center py-12">
             <div class="max-w-md mx-auto">
                 <div 
@@ -300,7 +244,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     </div>
                 </div>
                 
-                <!-- File Format Help -->
                 <div id="file-format-help" class="file-format-help mt-6 text-left bg-gray-50 rounded-lg p-4">
                     <h4 class="text-sm font-medium text-gray-900 mb-2 flex items-center">
                         <i data-lucide="info" class="w-4 h-4 mr-2"></i>
@@ -317,9 +260,7 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
             </div>
         </div>
 
-        <!-- Explorer Interface -->
         <div id="explorer-interface" v-else class="explorer-interface" :class="config.showSidebar ? 'grid grid-cols-1 lg:grid-cols-3 gap-6' : 'grid grid-cols-1 gap-6'">
-            <!-- Tree Navigation -->
             <div id="navigation-section" v-if="config.showSidebar" class="navigation-section lg:col-span-1 bg-white rounded-lg border border-gray-200 overflow-hidden">
                 <div id="navigation-header" class="navigation-header p-4 border-b border-gray-200 bg-gray-50">
                     <div class="flex items-center justify-between">
@@ -349,11 +290,9 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 </div>
             </div>
 
-            <!-- Content Viewer -->
             <div id="node-visualization" :class="config.showSidebar ? 'lg:col-span-2' : 'col-span-1'" class="node-visualization bg-white rounded-lg border border-gray-200 overflow-hidden">
                 <div id="node-header" class="node-header p-4 border-b border-gray-200 bg-gray-50">
     <div v-if="selectedNode" class="node-header-content">
-        <!-- Breadcrumbs -->
         <nav id="breadcrumb-nav" class="breadcrumb-nav flex flex-wrap items-center text-xs text-gray-500 mb-2">
             <span class="breadcrumb-arrow">Home</span>
             <span 
@@ -368,27 +307,20 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
             </span>
         </nav>
         
-        <!-- Module Type and Title -- REMOVED -->
-        
-        <!-- Compact Metadata Row -->
         <div id="node-metadata" class="node-metadata flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-gray-500">
-            <!-- Object Type -->
             <span class="node-type flex items-center">
                 <i :data-lucide="getNodeIcon()" class="w-3 h-3 mr-1"></i>
                 {{ getNodeType() }}
             </span>
             
-            <!-- Property Count -->
             <span v-if="isObject || isArray" class="property-count">
                 {{ getPropertyCount() }} {{ isArray ? 'items' : 'properties' }}
             </span>
             
-            <!-- ID -->
             <span v-if="getNodeId()" class="node-id font-mono bg-gray-100 px-2 py-0.5 rounded">
                 id: {{ getNodeId() }}
             </span>
             
-            <!-- Tags -->
             <div v-if="getNodeTags().length > 0" class="node-tags flex flex-wrap gap-1 items-center">
                 <span 
                     v-for="tag in getNodeTags().slice(0, 3)" 
@@ -409,7 +341,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 </span>
             </div>
 
-            <!-- EXPORT CONTROLS MOVED HERE -->
             <div id="export-controls" class="export-controls flex items-center space-x-1 ml-auto">
                 <button
                     id="export-markdown-btn"
@@ -432,7 +363,7 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
             </div>
         </div>
     </div>
-    <div v-else class="text-gray-500 p-4"> <!-- Added padding for consistency -->
+    <div v-else class="text-gray-500 p-4">
         Select an item from the tree to view its content
     </div>
 </div>
@@ -454,7 +385,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
         </div>
     </div>
 
-    <!-- Footer -->
     <footer id="main-footer" v-if="config.showFooter" class="app-footer bg-gray-50 border-t border-gray-200 mt-8">
         <div class="max-w-7xl mx-auto px-4 py-6">
             <div class="flex items-center justify-between">
@@ -475,7 +405,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
 <script>
     const { createApp } = Vue;
 
-    // Utility function to sanitize strings for CSS class names
     function sanitizeForClass(str) {
         if (!str) return '';
         return String(str)
@@ -483,42 +412,19 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
             .replace(/[^a-z0-9\-_]/g, '-')
             .replace(/^-+|-+$/g, '')
             .replace(/-+/g, '-')
-            .substring(0, 50); // Limit length
+            .substring(0, 50);
     }
 
-    // Tree Node Component
     const TreeNode = {
         name: 'TreeNode',
-        // Props:
-        // - node: The data object/array/primitive for this tree node. Required.
-        // - path: An array representing the path to this node from the root (e.g., ['users', 0, 'name']). Required.
-        // - level: The depth of this node in the tree (0 for root). Required.
-        // - selectedPath: The path string (JSON.stringified) of the currently selected node in the application. Required.
-        // - focusedNodePath: The path string (JSON.stringified) of the node that currently has keyboard focus. Required for ARIA and focus styling.
         props: ['node', 'path', 'level', 'selectedPath', 'focusedNodePath'],
-        // Emits:
-        // - select: Event emitted when this node is selected (typically by click or Enter/Space key).
-        //           Payload: { node: Object, path: Array } - The data of the node and its path.
-        // - focus-node: Event emitted to request that the application set focus to a node with the specified path.
-        //               Used by keyboard navigation (e.g., ArrowRight to focus first child, ArrowLeft to focus parent).
-        //               Payload: path (Array) - The path of the node to focus.
-        // - toggle-expanded: Event emitted when this node's expanded state is changed (e.g., by click on toggle or ArrowRight/Left keys).
-        //                    This allows the parent (main app) to keep track of expanded states for consistent keyboard navigation.
-        //                    Payload: { path: Array, expanded: Boolean } - The path of the node and its new expanded state.
-        // - navigate-tree: Event emitted for global tree navigation actions like ArrowUp, ArrowDown, Home, End.
-        //                  The main app handles the logic for determining the next node to focus based on the overall tree structure.
-        //                  Payload: direction (String: 'up', 'down', 'home', 'end') - The direction of navigation.
         emits: ['select', 'focus-node', 'toggle-expanded', 'navigate-tree'],
         watch: {
-            // Watcher for the `isFocused` computed property.
-            // When this node becomes the one with keyboard focus (as determined by `focusedNodePath` prop),
-            // this watcher ensures the actual DOM element for this tree node receives focus and is scrolled into view.
             isFocused(newValue) {
                 if (newValue) {
-                    this.$nextTick(() => { // Use $nextTick to ensure the element is in the DOM and focusable.
+                    this.$nextTick(() => {
                         if (this.$refs.treeNodeItem) {
                             this.$refs.treeNodeItem.focus();
-                            // Scroll the newly focused item into the nearest part of the scrollable ancestor for better UX.
                             this.$refs.treeNodeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
                         }
                     });
@@ -526,58 +432,34 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
             }
         },
         mounted() {
-            // Lifecycle hook called when the component is added to the DOM.
-            // If this node is expanded by default (e.g., root nodes or based on `this.level`) and has children,
-            // it emits its initial expanded state to the parent application.
-            // This is crucial for synchronizing the main app's `expandedNodeStates` with nodes that are initially auto-expanded.
             if (this.expanded && this.hasChildren) {
                 this.$emit('toggle-expanded', { path: this.path, expanded: this.expanded });
             }
         },
         data() {
             return {
-                // `expanded`: Boolean local state controlling whether this tree node's children are visible.
-                // Nodes are expanded by default if their `level` (depth in the tree) is less than 2 (i.e., root and its direct children).
                 expanded: this.level < 2
             }
         },
         computed: {
-            // `isFocused`: Boolean computed property.
-            // Determines if this tree node is currently the one that should have keyboard focus.
-            // It compares this node's `path` (stringified) with the `focusedNodePath` prop (also stringified) passed from the main app.
             isFocused() {
-                // Paths are arrays; stringify for reliable comparison.
                 return JSON.stringify(this.path) === JSON.stringify(this.focusedNodePath);
             },
-            // `isObject`: Boolean computed property.
-            // True if the `node` prop is a non-null JavaScript object (and not an array).
             isObject() {
                 return typeof this.node === 'object' && this.node !== null && !Array.isArray(this.node);
             },
-            // `isArray`: Boolean computed property.
-            // True if the `node` prop is a JavaScript array.
             isArray() {
                 return Array.isArray(this.node);
             },
-            // `hasChildren`: Boolean computed property.
-            // True if the `node` is an object or an array, indicating it can be expanded to show children.
-            // Note: This doesn't mean it *has* children to display in the tree, just that its type supports having children.
-            // See `hasNonLeafChildren` for checking renderable children.
             hasChildren() {
                 return this.isObject || this.isArray;
             },
-            // `hasNonLeafChildren`: Boolean computed property.
-            // True if this node has children that are themselves objects or arrays (i.e., non-leaf nodes).
-            // This is used to determine if the TreeNode itself should render, as TreeNodes are for expandable branches.
             hasNonLeafChildren() {
                 if (!this.hasChildren) return false;
                 
                 if (this.isArray) {
-                    // For arrays, check if any item is not a leaf node (i.e., is an object or array).
                     return this.node.some(item => !this.isLeafNode(item));
-                } else { // For objects
-                    // Check if any of its property values are not leaf nodes.
-                    // This includes special handling for 'items' array often found in StruML.
+                } else {
                     return Object.entries(this.node).some(([key, value]) => {
                         if (key === 'items' && Array.isArray(value)) {
                             return value.some(subItem => !this.isLeafNode(subItem));
@@ -586,42 +468,24 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     });
                 }
             },
-            // `nodeIcon`: String computed property.
-            // Determines the name of the Lucide icon to display next to the node, based on its data type.
             nodeIcon() {
-                if (this.isObject) return 'folder';         // Icon for objects (StruML modules, plain objects)
-                if (typeof this.node === 'string') return 'type';  // Icon for strings
-                if (typeof this.node === 'number') return 'hash';  // Icon for numbers
-                if (typeof this.node === 'boolean') return 'toggle-left'; // Icon for booleans
-                return 'file'; // Default icon for other types (e.g., null) or if type is ambiguous.
+                if (this.isObject) return 'folder';
+                if (typeof this.node === 'string') return 'type';
+                if (typeof this.node === 'number') return 'hash';
+                if (typeof this.node === 'boolean') return 'toggle-left';
+                return 'file';
             },
-            // `isSelected`: Boolean computed property.
-            // True if this tree node's path matches the `selectedPath` prop from the main app.
-            // Used for visual styling of the selected node.
             isSelected() {
-                // Paths are arrays; stringify for reliable comparison.
                 return JSON.stringify(this.path) === JSON.stringify(this.selectedPath);
             },
-            // `nodeCaption`: String computed property.
-            // Attempts to find a human-readable caption for the node if it's an object.
-            // It checks for common properties like 'name', 'title', or 'id'.
-            // Returns an empty string if the node is not an object or no suitable caption property is found.
-            // This uses the local `findNodeCaption` method.
             nodeCaption() {
-                if (!this.hasChildren) return ''; // Only objects/arrays can have captions from properties
+                if (!this.hasChildren) return '';
                 return this.findNodeCaption(this.node);
             },
-            // `displayName`: String computed property.
-            // Determines the primary display name for the node in the tree.
-            // If it's the root node (path.length === 0), it defaults to 'Main Data'.
-            // Otherwise, it's the last segment of its path (which is the object key or array index).
             displayName() {
                 if (this.path.length === 0) return 'Main Data';
                 return this.path[this.path.length - 1];
             },
-            // `displayNameWithCount`: String computed property.
-            // Enhances `displayName` by appending a count of items (for arrays) or properties (for objects).
-            // E.g., "myArray (3 items)" or "myObject (5 properties)".
             displayNameWithCount() {
                 let name = this.displayName;
                 if (this.isArray) {
@@ -631,11 +495,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 }
                 return name;
             },
-            // `nodeClasses`: String computed property.
-            // Generates a string of CSS classes for the main div of the tree node.
-            // Includes base classes, type-specific classes (e.g., 'node-type-object'),
-            // and semantic classes derived from node content like ID, name, or title, if present (e.g., 'node-id-123').
-            // Uses `sanitizeForClass` utility for creating valid CSS class names from dynamic content.
             nodeClasses() {
                 const classes = ['tree-node-item'];
                 if (this.isObject && this.node) {
@@ -649,63 +508,50 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 else classes.push(`node-type-${typeof this.node}`);
                 return classes.join(' ');
             },
-            // `childNodes`: Array computed property.
-            // Generates a list of child nodes that should be rendered by recursive <tree-node> components.
-            // This is a critical property for building the tree structure.
-            // - It only processes nodes that `hasChildren` (are objects or arrays).
-            // - It filters out "leaf" nodes (primitives, empty objects/arrays), as TreeNode is for expandable branches.
-            // - Special handling for objects containing an 'items' array (common in StruML):
-            //   Elements of such 'items' arrays are treated as direct children of the current node in the tree,
-            //   rather than children of a node literally named 'items'.
-            // Each child object in the returned array has `key`, `value`, `displayName`, `path`, and `isArrayItem` properties.
             childNodes() {
                 if (!this.hasChildren) return [];
                 
                 const children = [];
                 
                 if (this.isArray) {
-                    // For arrays, iterate over each item.
                     this.node.forEach((item, index) => {
-                        // Only include non-leaf children (objects/arrays that are not empty).
                         if (!this.isLeafNode(item)) {
                             const itemTitle = (item && typeof item === 'object' && item.title) 
                                 ? item.title 
-                                : `Item ${index + 1}`; // Default display name for array items.
+                                : `Item ${index + 1}`;
                             
                             children.push({
-                                key: index, // Use array index as the unique key for Vue's v-for.
-                                value: item, // The actual child node data.
+                                key: index,
+                                value: item,
                                 displayName: itemTitle,
-                                path: [...this.path, index], // Construct path for the child.
-                                isArrayItem: true // Flag used for styling array items differently if needed.
+                                path: [...this.path, index],
+                                isArrayItem: true
                             });
                         }
                     });
-                } else { // Node is an object.
+                } else {
                     Object.entries(this.node).forEach(([key, value]) => {
-                        // Special case: If the key is 'items' and its value is an array (StruML convention).
                         if (key === 'items' && Array.isArray(value)) {
                             value.forEach((item, index) => {
-                                // Process each item within the 'items' array.
                                 if (!this.isLeafNode(item)) {
                                     const itemTitle = (item && typeof item === 'object' && item.title) 
                                         ? item.title 
                                         : `Item ${index + 1}`;
                                     
                                     children.push({
-                                        key: `${key}_${index}`, // Create a unique key, e.g., "items_0".
+                                        key: `${key}_${index}`,
                                         value: item,
                                         displayName: itemTitle,
-                                        path: [...this.path, key, index], // Path includes 'items' key and then the index.
+                                        path: [...this.path, key, index],
                                         isArrayItem: true
                                     });
                                 }
                             });
-                        } else if (!this.isLeafNode(value)) { // For other object properties that are not leaves.
+                        } else if (!this.isLeafNode(value)) {
                             children.push({
                                 key,
                                 value,
-                                displayName: key, // Display name is the object key itself.
+                                displayName: key,
                                 path: [...this.path, key],
                                 isArrayItem: false
                             });
@@ -716,21 +562,9 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
             }
         },
         methods: {
-            // `selectThis()`: Method called when the node's clickable area is activated (click or Enter/Space).
-            // Emits a 'select' event to the parent (main app) with this node's data and path.
-            // The main app then updates `selectedNode`, `selectedPath`, and `focusedNodePath`.
             selectThis() {
                 this.$emit('select', this.node, this.path);
             },
-            /**
-             * `handleKeyRight()`: Method for keyboard navigation (ArrowRight).
-             * - If the node `hasChildren` and is currently collapsed (`!this.expanded`):
-             *   Expands the node (`this.expanded = true`).
-             *   Emits `toggle-expanded` to notify the main app about the state change.
-             *   If it has renderable `childNodes`, emits `focus-node` to move focus to the first child.
-             * - If the node `hasChildren`, is already `expanded`, and has `childNodes`:
-             *   Emits `focus-node` to move focus to the first child.
-             */
             handleKeyRight() {
                 if (this.hasChildren && !this.expanded) {
                     this.expanded = true;
@@ -742,24 +576,12 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     this.$emit('focus-node', this.childNodes[0].path);
                 }
             },
-            /**
-             * `handleKeyLeft()`: Method for keyboard navigation (ArrowLeft).
-             * - If the node `hasChildren` and is currently `expanded`:
-             *   Collapses the node (`this.expanded = false`).
-             *   Emits `toggle-expanded` to notify the main app.
-             * - If the node is collapsed OR is a leaf item (and not the root of the tree, `this.path.length > 0`):
-             *   Emits `focus-node` to move focus to its parent node.
-             *   Includes special logic for 'items' arrays: if collapsing from an item within an 'items' list,
-             *   focus should go to the grandparent (the object containing 'items'), not the 'items' key itself.
-             */
             handleKeyLeft() {
                 if (this.hasChildren && this.expanded) {
                     this.expanded = false;
                     this.$emit('toggle-expanded', { path: this.path, expanded: this.expanded });
                 } else if (this.path.length > 0) {
                     let parentPathTarget = this.path.slice(0, -1);
-                    // If current node is an item within an 'items' array (e.g. path is ['obj', 'items', 0]),
-                    // then navigating left (parent) should target path ['obj'], not ['obj', 'items'].
                     if (this.path.length > 1 && this.path[this.path.length - 2] === 'items' && parentPathTarget.length > 0) {
                          this.$emit('focus-node', parentPathTarget.slice(0, -1));
                     } else {
@@ -767,22 +589,12 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     }
                 }
             },
-            /**
-             * `toggle()`: Method called when the expand/collapse toggle button is clicked.
-             * - If the node `hasChildren`, it toggles the local `this.expanded` state.
-             * - Emits `toggle-expanded` to inform the main app about the state change,
-             *   allowing the central `expandedNodeStates` to be updated for consistent keyboard navigation.
-             */
             toggle() {
                 if (this.hasChildren) {
                     this.expanded = !this.expanded;
                     this.$emit('toggle-expanded', { path: this.path, expanded: this.expanded });
                 }
             },
-            // `getNodePreview()`: Generates a short preview string for the node's value.
-            // Primarily intended for leaf nodes if they were to be displayed with a preview by TreeNode itself.
-            // Currently, this is used in the template for non-expandable nodes when no caption is available.
-            // Truncates long strings and provides type-based summaries (e.g., "3 items").
             getNodePreview() {
                 if (typeof this.node === 'string') {
                     return this.node.length > 30 ? this.node.substring(0, 30) + '...' : this.node;
@@ -793,11 +605,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 if (this.isObject) return `${Object.keys(this.node).length} properties`;
                 return '';
             },
-            // `findNodeCaption(node)`: Utility function to find a suitable caption for a given node object.
-            // Searches for properties like 'name', 'title', or 'id' (case-insensitive for key endings).
-            // Returns the string value of the first matching property found, or an empty string.
-            // This is a local version; similar functions exist in the main app and ContentViewer.
-            // TODO: Centralize this utility in a future refactor.
             findNodeCaption(node) {
                 if (!node || typeof node !== 'object' || Array.isArray(node)) {
                     return '';
@@ -811,10 +618,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 if (idField && node[idField]) return String(node[idField]);
                 return '';
             },
-            // `isLeafNode(node)`: Utility function to determine if a given node is a "leaf" node.
-            // A leaf node is generally a primitive type (string, number, boolean, null, undefined)
-            // or an empty object or array. Such nodes typically don't have children to expand in a tree view.
-            // This is crucial for the `childNodes` computed property to decide which children to render recursively.
             isLeafNode(node) {
                 if (node === null || node === undefined) return true;
                 if (typeof node !== 'object') return true;
@@ -824,7 +627,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
             }
         },
         template: `
-            <!-- TreeNode is only rendered if it has non-leaf children or it's the root node -->
             <div v-if="hasNonLeafChildren || path.length === 0" :class="nodeClasses">
                 <div 
                     class="flex items-center py-2 px-2 rounded cursor-pointer pl-2 transition-all duration-200 ease-in-out hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -861,7 +663,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                                 {{ displayNameWithCount }}
                             </span>
                         </div>
-                        <!-- If nodeCaption is displayed, the preview of primitive value might be redundant. Also hide if focused (as focus implies interaction) -->
                         <div v-if="!hasChildren && !nodeCaption && !isFocused" class="tree-node-preview text-xs text-gray-500 truncate" :title="getNodePreview()">
                             {{ getNodePreview() }}
                         </div>
@@ -887,35 +688,17 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
         `
     };
 
-    // Content Viewer Component
     const ContentViewer = {
         name: 'ContentViewer',
-        // Props:
-        // - node: The data object/array/primitive whose content is to be displayed. Required.
-        // - path: An array representing the path to this node from the root. Required for context and navigation.
         props: ['node', 'path'],
-        // Emits:
-        // - select: Event emitted when a user action implies navigating to a child or sub-item.
-        //           Payload: { node: Object, path: Array } - The data of the target node and its full path.
-        // - navigate-relation: Event emitted when a user clicks on a relation tag.
-        //                      Payload: targetName (String) - The 'target' identifier from the relation tag.
-        //                      The main app handles resolving this target name to an actual node path.
         emits: ['select', 'navigate-relation'],
         computed: {
-            // `isObject`: Boolean computed property.
-            // True if the current `node` prop is a non-null JavaScript object (and not an array).
             isObject() {
                 return typeof this.node === 'object' && this.node !== null && !Array.isArray(this.node);
             },
-            // `isArray`: Boolean computed property.
-            // True if the current `node` prop is a JavaScript array.
             isArray() {
                 return Array.isArray(this.node);
             },
-            // `nodeType`: String computed property.
-            // Determines a user-friendly type name for the current `node` (e.g., "Array", "Object", "Date", "Email", "Text").
-            // This is used for display purposes, such as in the header of the content view or for type-specific icons.
-            // It leverages helper methods like `isDate`, `isEmail`, `isUrl`, `isMarkdown` for refined string typing.
             nodeType() {
                 if (this.isArray) return 'Array';
                 if (this.isObject) return 'Object';
@@ -923,89 +706,63 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     if (this.isDate(this.node)) return 'Date';
                     if (this.isEmail(this.node)) return 'Email';
                     if (this.isUrl(this.node)) return 'URL';
-                    if (this.isMarkdown(this.node)) return 'Formatted Text'; // Indicates string that might be rendered as Markdown.
+                    if (this.isMarkdown(this.node)) return 'Formatted Text';
                     return 'Text';
                 }
                 if (typeof this.node === 'number') return 'Number';
                 if (typeof this.node === 'boolean') return 'Boolean';
-                return 'Unknown'; // Default for null, undefined, or other unexpected types.
+                return 'Unknown';
             },
-            // `contentClasses`: String computed property.
-            // Generates CSS classes for the root element of the ContentViewer.
-            // Includes a base class 'content-viewer', type-specific classes (e.g., 'content-type-array'),
-            // and semantic classes derived from the node's content if it's an object (e.g., 'content-id-xyz', 'content-name-abc').
-            // Uses `sanitizeForClass` for creating valid CSS class names from dynamic data.
             contentClasses() {
                 const classes = ['content-viewer'];
-                if (this.isObject && this.node) { // Add semantic classes if node is an object with relevant properties.
+                if (this.isObject && this.node) {
                     if (this.node.id) classes.push(`content-id-${sanitizeForClass(this.node.id)}`);
                     if (this.node.name) classes.push(`content-name-${sanitizeForClass(this.node.name)}`);
                     if (this.node.title) classes.push(`content-title-${sanitizeForClass(this.node.title)}`);
-                    const caption = this.findNodeCaption(this.node); // Use local findNodeCaption.
+                    const caption = this.findNodeCaption(this.node);
                     if (caption) classes.push(`content-caption-${sanitizeForClass(caption)}`);
                 }
-                // Add type-specific classes.
                 if (this.isArray) classes.push('content-type-array');
                 else if (this.isObject) classes.push('content-type-object');
-                else classes.push(`content-type-${typeof this.node}`); // e.g., 'content-type-string'.
+                else classes.push(`content-type-${typeof this.node}`);
                 return classes.join(' ');
             },
-            // `specialFields`: Object computed property.
-            // Identifies and categorizes fields within an object `node` that require special rendering,
-            // distinct from the standard display of primitive values or sub-item cards.
-            // Examples: 'id', 'heading' (from name/title), 'markdown' content, 'date', 'tags'.
-            // Returns an object where keys are the original field names and values are objects containing:
-            //   - `type`: The determined special type (e.g., 'id', 'markdown').
-            //   - `value`: The actual value of the field.
-            //   - `key`: The original key of the field.
-            // Fields classified as 'normal' by `getFieldType` are excluded and handled by `normalFields`.
             specialFields() {
-                if (!this.isObject) return {}; // Only objects can have special fields.
+                if (!this.isObject) return {};
                 const fields = {};
                 Object.entries(this.node).forEach(([key, value]) => {
-                    const fieldType = this.getFieldType(key, value); // Determine the type of the field.
-                    if (fieldType !== 'normal') { // If it's not a 'normal' field, it's special.
+                    const fieldType = this.getFieldType(key, value);
+                    if (fieldType !== 'normal') {
                         fields[key] = { type: fieldType, value: value, key: key };
                     }
                 });
                 return fields;
             },
-            // `normalFields`: Array computed property.
-            // Extracts "normal" (leaf) fields from the current `node` for a tabular or list-like display.
-            // "Normal" fields are typically primitive values (strings, numbers, booleans) that are not
-            // categorized as `specialFields` (like 'id', 'markdown', 'tags').
-            // - If `node` is an array: it lists array items that are leaf nodes (primitives).
-            // - If `node` is an object: it lists object properties whose values are leaf nodes and are not 'specialFields'.
-            // It also excludes any property explicitly named 'items' if the node is an object, as these are
-            // typically handled by `nonLeafNodes` for StruML-like structures.
-            // Each item in the returned array is an object with `key`, `displayName`, `value`, `originalKey`, and `type`.
             normalFields() {
-                if (!this.isObject && !this.isArray) return []; // Only objects or arrays can have normal fields.
+                if (!this.isObject && !this.isArray) return [];
                 const fields = [];
                 if (this.isArray) {
-                    // For arrays, iterate and add items that are leaf nodes.
                     this.node.forEach((item, index) => {
-                        if (this.isLeafNode(item)) { // Check if the array item is a leaf.
+                        if (this.isLeafNode(item)) {
                             fields.push({
-                                key: index, // Use array index as key.
-                                displayName: `Item ${index + 1}`, // User-friendly display name.
+                                key: index,
+                                displayName: `Item ${index + 1}`,
                                 value: item,
-                                originalKey: index, // Store original index for navigation.
-                                type: 'normal' // Mark as a normal field.
+                                originalKey: index,
+                                type: 'normal'
                             });
                         }
                     });
-                } else { // Node is an object.
+                } else {
                     Object.entries(this.node).forEach(([key, value]) => {
-                        // Exclude 'items' key (handled by nonLeafNodes) and ensure the value is a leaf node.
                         if (key !== 'items' && this.isLeafNode(value)) {
                             const fieldType = this.getFieldType(key, value);
-                            if (fieldType === 'normal') { // Only include if not classified as a special field type.
+                            if (fieldType === 'normal') {
                                 fields.push({
-                                    key, // Object key.
-                                    displayName: key, // Display name is the key itself.
+                                    key,
+                                    displayName: key,
                                     value,
-                                    originalKey: key, // Store original key.
+                                    originalKey: key,
                                     type: 'normal'
                                 });
                             }
@@ -1014,41 +771,30 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 }
                 return fields;
             },
-            // `nonLeafNodes`: Array computed property.
-            // Extracts child items from the current `node` that are themselves non-leaf nodes (i.e., objects or arrays)
-            // and should be displayed as navigable cards or summaries, allowing users to drill down further.
-            // - If `node` is an array: it lists array items that are non-leaf nodes.
-            // - If `node` is an object:
-            //   - It lists properties whose values are non-leaf nodes (excluding a property named 'items').
-            //   - Special handling for StruML: If the object has an 'items' property that is an array,
-            //     the non-leaf elements of this 'items' array are treated as direct sub-items of the current `node`.
-            // Each item in the returned array is an object with `key`, `displayName`, `value`, `caption`, `originalKey`, and `isArrayItem`.
             nonLeafNodes() {
                 if (!this.isObject && !this.isArray) return [];
                 const branches = [];
                 if (this.isArray) {
-                    // For arrays, iterate and add items that are not leaf nodes.
                     this.node.forEach((item, index) => {
                         if (!this.isLeafNode(item)) {
                             const itemTitle = (item && typeof item === 'object' && item.title) 
                                 ? item.title 
-                                : `Item ${index + 1}`; // Default title or use item's own title.
+                                : `Item ${index + 1}`;
                             branches.push({
-                                key: index, // Array index.
+                                key: index,
                                 displayName: itemTitle,
                                 value: item,
-                                caption: this.findNodeCaption(item), // Get caption for the sub-item.
-                                originalKey: index, // Original index for path construction.
-                                isArrayItem: true // Flag for styling.
+                                caption: this.findNodeCaption(item),
+                                originalKey: index,
+                                isArrayItem: true
                             });
                         }
                     });
-                } else { // Node is an object.
+                } else {
                     Object.entries(this.node).forEach(([key, value]) => {
-                        // Exclude 'items' key (handled separately) and ensure value is not a leaf.
                         if (key !== 'items' && !this.isLeafNode(value)) {
                             branches.push({
-                                key, // Object key.
+                                key,
                                 displayName: key,
                                 value,
                                 caption: this.findNodeCaption(value),
@@ -1058,8 +804,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                         }
                     });
                 }
-                // Special handling for 'items' array within an object (StruML convention).
-                // Treat its non-leaf elements as direct sub-items of the current node.
                 if (this.isObject && this.node.items && Array.isArray(this.node.items)) {
                     this.node.items.forEach((item, index) => {
                         if (!this.isLeafNode(item)) {
@@ -1067,11 +811,11 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                                 ? item.title 
                                 : `Item ${index + 1}`;
                             branches.push({
-                                key: `items_${index}`, // Create a unique key, e.g., "items_0".
+                                key: `items_${index}`,
                                 displayName: itemTitle,
                                 value: item,
                                 caption: this.findNodeCaption(item),
-                                originalKey: ['items', index], // Path to this item is via 'items' key then index.
+                                originalKey: ['items', index],
                                 isArrayItem: true
                             });
                         }
@@ -1081,16 +825,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
             }
         },
         methods: {
-            // `getFieldType(key, value)`: Determines a semantic type for a field based on its key and value.
-            // This classification is used by `specialFields` to decide on custom rendering.
-            // - 'id': For keys like 'id', 'user_id'.
-            // - 'heading': For keys like 'title', 'name'.
-            // - 'markdown': For common content keys ('content', 'description') if value looks like Markdown.
-            // - 'content': For common content keys if not Markdown.
-            // - 'date': If value is a string parseable as a date.
-            // - 'number': If value is a number.
-            // - 'tags': If key is 'tags' and value is a string.
-            // - 'normal': Default for other fields.
             getFieldType(key, value) {
                 const keyLower = key.toLowerCase();
                 if (keyLower === 'id' || keyLower.endsWith('id')) return 'id';
@@ -1104,12 +838,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 if (keyLower === 'tags' && typeof value === 'string') return 'tags';
                 return 'normal';
             },
-            // `renderSpecialField(field)`: Generates HTML string for rendering "special" fields.
-            // Takes a field object (from `specialFields` computed property) and returns HTML based on `field.type`.
-            // Handles types like 'id', 'heading', 'markdown' (using `marked.parse`), 'content', 'date', 'number', 'tags'.
-            // WARNING: For 'markdown', uses `marked.parse()`. If Markdown source is untrusted, XSS is possible.
-            //          Consider DOMPurify or similar for sanitization if input can be malicious.
-            // For 'tags', it parses the tag string and renders each tag with appropriate styling.
             renderSpecialField(field) {
                 switch (field.type) {
                     case 'id':
@@ -1117,9 +845,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     case 'heading':
                         return `<h3 class="text-xl font-semibold text-gray-900">${field.value}</h3>`;
                     case 'markdown':
-                        // WARNING: marked.js output is NOT sanitized by default in recent versions.
-                        // An external library like DOMPurify would be needed for robust XSS protection
-                        // if the markdown source (field.value) is untrusted.
                         return `<div class="markdown-content data-field-markdown">${marked.parse(field.value)}</div>`;
                     case 'content':
                         return `<div class="whitespace-pre-wrap">${field.value}</div>`;
@@ -1135,27 +860,20 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                             <span class="font-mono">${this.formatNumber(field.value)}</span>
                         </div>`;
                     case 'tags':
-                        const tags = this.parseTags(field.value); // Uses local parseTags method.
+                        const tags = this.parseTags(field.value);
                         return tags.map(tag => {
-                            const tagClass = this.getTagClass(tag); // Uses local getTagClass for styling.
+                            const tagClass = this.getTagClass(tag);
                             const baseTagClasses = 'inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium mr-1 mb-1 whitespace-nowrap';
                             if (tag.type === 'relation') {
-                                // Relation tags are styled to be clickable. Actual click handling is in the template
-                                // via event delegation or direct binding if this were a Vue template string.
-                                // Since this is v-html, direct Vue event binding won't work here.
-                                // The template currently handles clicks on rendered tags by checking classes.
                                 return `<span class="data-tag data-tag-relation ${baseTagClasses} ${tagClass}" style="cursor: pointer;">${tag.relationType} » ${tag.target}</span>`;
                             } else {
                                 return `<span class="data-tag data-tag-${tag.type} ${baseTagClasses} ${tagClass}">${tag.type}::${tag.value}</span>`;
                             }
                         }).join('');
                     default:
-                        return String(field.value); // Fallback for any unknown special types.
+                        return String(field.value);
                 }
             },
-            // `getSubItemClasses(branch)`: Generates CSS classes for sub-item cards (non-leaf nodes).
-            // Similar to `contentClasses` and `nodeClasses`, it includes base, type-specific,
-            // and semantic classes derived from the sub-item's content (ID, name, title, caption).
             getSubItemClasses(branch) {
                 const classes = ['sub-item-card'];
                 if (branch.value && typeof branch.value === 'object') {
@@ -1168,45 +886,30 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 else if (typeof branch.value === 'object') classes.push('sub-item-type-object');
                 return classes.join(' ');
             },
-            // `isDate(str)`: Checks if a string is a valid date (basic YYYY-MM-DD format and parsable).
-            // TODO: Duplicated in main app. Consider centralizing.
             isDate(str) {
                 return typeof str === 'string' && /^\d{4}-\d{2}-\d{2}/.test(str) && !isNaN(Date.parse(str));
             },
-            // `isEmail(str)`: Checks if a string is a valid email address (basic regex).
-            // TODO: Duplicated in main app. Consider centralizing.
             isEmail(str) {
                 if (typeof str !== 'string') return false;
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
             },
-            // `isUrl(str)`: Checks if a string is a valid URL (uses URL constructor).
-            // TODO: Duplicated in main app. Consider centralizing.
             isUrl(str) {
                 if (typeof str !== 'string') return false;
                 try { new URL(str); return true; } catch (_) { return false; }
             },
-            // `isMarkdown(str)`: Heuristically checks if a string contains Markdown-like patterns.
-            // This is a basic check (headers, bold, italic, code, links, lists, blockquotes).
-            // TODO: Could be improved or replaced with a more robust library if precise detection is critical.
             isMarkdown(str) {
                 if (typeof str !== 'string' || str.length < 10) return false;
                 const markdownPatterns = [ /#{1,6}\s+.+/, /\*\*.*?\*\*/, /\*.*?\*/, /`.*?`/, /\`\`\`[\s\S]*?\`\`\`/, /\[.*?\]$$.*?$$/, /^\s*[-*+]\s+/m, /^\s*\d+\.\s+/m, /^\s*>\s+/m ];
                 return markdownPatterns.some(pattern => pattern.test(str));
             },
-            // `formatDate(str)`: Formats a date string into a human-readable format (en-US locale).
-            // TODO: Duplicated in main app. Consider centralizing.
             formatDate(str) {
                 if (!str) return '';
                 try { return new Date(str).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', timeZone: 'UTC' }); } catch (e) { return str; }
             },
-            // `formatNumber(num)`: Formats a number using locale-specific number formatting (en-US).
-            // TODO: Duplicated in main app. Consider centralizing.
             formatNumber(num) {
                 if (typeof num !== 'number') return '';
                 return new Intl.NumberFormat('en-US').format(num);
             },
-            // `isLeafNode(node)`: Determines if a node is a "leaf" (primitive, empty array/object).
-            // Duplicated from TreeNode. TODO: Centralize.
             isLeafNode(node) {
                 if (node === null || node === undefined) return true;
                 if (typeof node !== 'object') return true;
@@ -1214,8 +917,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 if (!Array.isArray(node) && Object.keys(node).length === 0) return true;
                 return false;
             },
-            // `findNodeCaption(node)`: Finds a caption for a node (name, title, id).
-            // Duplicated from TreeNode and Main App. TODO: Centralize.
             findNodeCaption(node) {
                 if (!node || typeof node !== 'object' || Array.isArray(node)) return '';
                 const keys = Object.keys(node);
@@ -1227,12 +928,8 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 if (idField && node[idField]) return String(node[idField]);
                 return '';
             },
-            // `navigateToChild(child)`: Emits a 'select' event to navigate to a child node.
-            // Takes a `child` object (typically from `nonLeafNodes`) which contains the value and original key/path info.
-            // Constructs the full path to the child and emits it with the child's value.
             navigateToChild(child) {
                 let childPath;
-                // `child.originalKey` can be a direct key (string/number) or an array for items within 'items' (e.g., ['items', 0]).
                 if (Array.isArray(child.originalKey)) {
                     childPath = [...this.path, ...child.originalKey];
                 } else {
@@ -1240,23 +937,17 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 }
                 this.$emit('select', child.value, childPath);
             },
-            // `getIdField()`: Retrieves the ID of the current `node`, if an ID field (key is 'id' or ends with 'id') exists.
-            // Returns the ID value or null.
             getIdField() {
                 if (!this.isObject) return null;
                 const keys = Object.keys(this.node);
                 const idFieldKey = keys.find(key => key.toLowerCase() === 'id' || key.toLowerCase().endsWith('id'));
                 return idFieldKey ? this.node[idFieldKey] : null;
             },
-            // `getChildCount(node)`: Gets the count of children for a given node (items in array or properties in object).
             getChildCount(node) {
                 if (Array.isArray(node)) return node.length;
                 if (typeof node === 'object' && node !== null) return Object.keys(node).length;
                 return 0;
             },
-            // `parseTags(tagsString)`: Parses a comma-separated string of tags into an array of tag objects.
-            // Supports 'type::value' and 'relationType>>target' formats.
-            // Duplicated in main app. TODO: Centralize.
             parseTags(tagsString) {
                 if (!tagsString) return [];
                 return tagsString.split(',').map(tag => tag.trim()).map(tag => {
@@ -1273,8 +964,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     return { type: 'custom', value: tag, full: tag };
                 });
             },
-            // `getTagClass(tag)`: Returns the appropriate CSS class for styling a tag based on its `tag.type`.
-            // Uses predefined Tailwind-compatible class stems like 'tag-type', 'tag-priority'.
             getTagClass(tag) {
                 const validTypes = ['type', 'priority', 'status', 'relation'];
                 return validTypes.includes(tag.type) ? `tag-${tag.type}` : 'tag-default';
@@ -1282,43 +971,35 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
         },
         template: `
             <div :class="contentClasses" class="space-y-6">
-                <!-- Special Fields Rendering -->
                 <div v-if="isObject" class="special-fields space-y-4">
                     <template v-for="(field, key) in specialFields" :key="key">
-                        <!-- ID Field (discrete) -->
                         <div v-if="field.type === 'id'" class="field-container field-id-container flex items-center space-x-2">
                             <span class="text-sm text-gray-600">{{ field.key }}:</span>
                             <span v-html="renderSpecialField(field)" class="bg-gray-100 text-gray-500 text-xs px-1.5 py-0.5 rounded font-mono"></span>
                         </div>
                         
-                        <!-- Heading Field -->
                         <div v-else-if="field.type === 'heading'" class="field-container field-heading-container first:mt-0 border-b-2 border-gray-200 pb-2 mb-4 mt-6" v-html="renderSpecialField(field)"></div>
                         
-                        <!-- Markdown Content -->
                         <div v-else-if="field.type === 'markdown'" class="field-container field-markdown-container space-y-2">
                             <h4 class="text-sm font-medium text-gray-700">{{ field.key }}</h4>
                             <div v-html="renderSpecialField(field)"></div>
                         </div>
                         
-                        <!-- Regular Content -->
                         <div v-else-if="field.type === 'content'" class="field-container field-content-container space-y-2">
                             <h4 class="text-sm font-medium text-gray-700">{{ field.key }}</h4>
                             <div v-html="renderSpecialField(field)"></div>
                         </div>
                         
-                        <!-- Date Field (compact) -->
                         <div v-else-if="field.type === 'date'" class="field-container field-date-container inline-flex items-center gap-2 py-1">
                             <span class="field-label font-medium text-gray-700 min-w-[80px]">{{ field.key }}:</span>
                             <div v-html="renderSpecialField(field)" class="text-gray-900"></div>
                         </div>
                         
-                        <!-- Number Field (compact) -->
                         <div v-else-if="field.type === 'number'" class="field-container field-number-container inline-flex items-center gap-2 py-1">
                             <span class="field-label font-medium text-gray-700 min-w-[80px]">{{ field.key }}:</span>
                             <div v-html="renderSpecialField(field)" class="text-gray-900"></div>
                         </div>
                         
-                        <!-- Tags Field -->
                         <div v-else-if="field.type === 'tags'" class="field-container field-tags-container space-y-2">
                             <h4 class="text-sm font-medium text-gray-700">{{ field.key }}</h4>
                             <div class="flex flex-wrap gap-2" v-html="renderSpecialField(field)"></div>
@@ -1326,7 +1007,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     </template>
                 </div>
 
-                <!-- Normal Fields Section -->
                 <div v-if="normalFields.length > 0" class="normal-fields space-y-4">
                     <h3 v-if="Object.keys(specialFields).length > 0" class="text-md font-medium text-gray-900">Other Properties</h3>
                     <div class="normal-fields-container bg-gray-50 rounded-lg p-4">
@@ -1335,20 +1015,14 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                                  :class="['data-field', 'data-field-' + sanitizeForClass(field.key), 'inline-flex items-center gap-2 py-1', { 'border-l-2 border-gray-200 ml-2 pl-3': isArray }]">
                                 <span class="field-label font-medium text-gray-700 min-w-[80px]">{{ field.displayName }}:</span>
                                 <div class="field-value text-gray-900">
-                                    <!-- String Content -->
                                     <span v-if="typeof field.value === 'string'">
-                                        <!-- Email -->
                                         <a v-if="isEmail(field.value)" :href="'mailto:' + field.value" class="text-blue-600 hover:underline">{{ field.value }}</a>
-                                        <!-- URL -->
                                         <a v-else-if="isUrl(field.value)" :href="field.value" target="_blank" class="text-blue-600 hover:underline">{{ field.value }}</a>
-                                        <!-- Regular Text -->
                                         <span v-else>{{ field.value }}</span>
                                     </span>
-                                    <!-- Boolean Content -->
                                     <span v-else-if="typeof field.value === 'boolean'" class="font-medium">
                                         {{ field.value ? 'True' : 'False' }}
                                     </span>
-                                    <!-- Other types -->
                                     <span v-else>{{ field.value }}</span>
                                 </div>
                             </div>
@@ -1356,7 +1030,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     </div>
                 </div>
 
-                <!-- Non-Leaf Nodes Section -->
                 <div v-if="nonLeafNodes.length > 0" class="sub-items-section space-y-4">
                     <h3 class="text-md font-medium text-gray-900">Sub-items</h3>
                     <div class="sub-items-grid grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1374,11 +1047,8 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     </div>
                 </div>
                 
-                <!-- Primitive Value Display -->
                 <div v-if="!isObject && !isArray" class="primitive-value bg-gray-50 rounded-lg p-4">
-                    <!-- String Content -->
                     <div v-if="typeof node === 'string'" class="primitive-string">
-                        <!-- Date -->
                         <div v-if="isDate(node)" class="primitive-date flex items-center space-x-3">
                             <i data-lucide="calendar" class="w-5 h-5 text-gray-700"></i>
                             <div>
@@ -1387,40 +1057,31 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                             </div>
                         </div>
                         
-                        <!-- Email -->
                         <div v-else-if="isEmail(node)" class="primitive-email flex items-center space-x-3">
                             <i data-lucide="mail" class="w-5 h-5 text-gray-700"></i>
                             <a :href="'mailto:' + node" class="text-gray-900 hover:underline">{{ node }}</a>
                         </div>
                         
-                        <!-- URL -->
                         <div v-else-if="isUrl(node)" class="primitive-url flex items-center space-x-3">
                             <i data-lucide="external-link" class="w-5 h-5 text-gray-700"></i>
                             <a :href="node" target="_blank" class="text-gray-900 hover:underline">{{ node }}</a>
                         </div>
                         
-                        <!-- Markdown -->
                         <div v-else-if="isMarkdown(node)" class="primitive-markdown markdown-content" v-html="
-                            // WARNING: marked.js output is NOT sanitized by default in recent versions.
-                            // An external library like DOMPurify would be needed for robust XSS protection
-                            // if the markdown source (node) is untrusted.
                             marked.parse(node)
                         "></div>
                         
-                        <!-- Regular Text -->
                         <div v-else class="primitive-text flex items-start space-x-3">
                             <i data-lucide="type" class="w-5 h-5 text-gray-500 mt-0.5"></i>
                             <div class="whitespace-pre-wrap">{{ node }}</div>
                         </div>
                     </div>
 
-                    <!-- Number Content -->
                     <div v-else-if="typeof node === 'number'" class="primitive-number flex items-center space-x-3">
                         <i data-lucide="hash" class="w-5 h-5 text-gray-700"></i>
                         <div class="text-2xl font-mono">{{ formatNumber(node) }}</div>
                     </div>
 
-                    <!-- Boolean Content -->
                     <div v-else-if="typeof node === 'boolean'" class="primitive-boolean flex items-center space-x-3">
                         <i :data-lucide="node ? 'check-circle' : 'x-circle'" 
                            class="w-5 h-5 text-gray-700"></i>
@@ -1433,7 +1094,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
         `
     };
 
-    // Main App
     createApp({
         components: {
             TreeNode,
@@ -1441,40 +1101,20 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
         },
         data() {
             return {
-                // config: Holds the effective application configuration, initially set from the global APP_CONFIG object.
-                // This can be modified by URL parameters upon initialization.
                 config: APP_CONFIG,
-                // jsonData: Stores the root of the parsed JSON data. Null if no file is loaded.
                 jsonData: null,
-                // selectedNode: The actual JavaScript object or primitive value of the currently selected node in the data structure.
                 selectedNode: null,
-                // selectedPath: An array of strings and/or numbers representing the path from the root of jsonData to the selectedNode.
-                // E.g., ['users', 0, 'profile']
                 selectedPath: [],
-                // focusedNodePath: An array representing the path to the node that currently has keyboard focus in the tree view.
-                // This is managed by keyboard navigation logic and selection actions.
                 focusedNodePath: [],
-                // expandedNodeStates: An object that stores the expanded/collapsed state of nodes in the tree view.
-                // Keys are stringified paths (JSON.stringify(pathArray)), and values are booleans (true for expanded, false for collapsed).
-                // This is essential for maintaining tree state during navigation and re-renders.
                 expandedNodeStates: {},
-                // isDragOver: A boolean flag that is true when a file is being dragged over the designated drop zone.
-                // Used to apply visual feedback (e.g., highlighting the drop zone).
                 isDragOver: false,
-                // notificationMessage: The text content of the current notification message to be displayed to the user.
                 notificationMessage: '',
-                // notificationType: A string indicating the type of notification ('info', 'success', 'error', 'warning').
-                // This controls the styling (e.g., color) of the notification pop-up.
                 notificationType: 'info',
-                // showNotification: A boolean flag that controls the visibility of the notification pop-up.
                 showNotification: false,
-                // notificationTimeout: Stores the JavaScript TimeoutID for the currently active notification.
-                // This is used to automatically hide the notification after a set duration.
                 notificationTimeout: null
             }
         },
         computed: {
-            // Generates breadcrumb navigation items based on the selectedPath
             breadcrumbs() {
                 return this.selectedPath.map((segment, index) => {
                     const path = this.selectedPath.slice(0, index + 1);
@@ -1487,16 +1127,12 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     };
                 });
             },
-            // Gets the caption for the currently selected node
             nodeCaption() {
                 return this.findNodeCaption(this.selectedNode);
             }
         },
         methods: {
-            // #region Utility Methods
-            sanitizeForClass, // Global utility, potentially move later
-
-            // Determines the type of the selected node (e.g., Object, Array, String)
+            sanitizeForClass,
             getNodeType() {
                 if (Array.isArray(this.selectedNode)) return 'Array';
                 if (typeof this.selectedNode === 'object' && this.selectedNode !== null) return 'Object';
@@ -1505,7 +1141,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 if (typeof this.selectedNode === 'boolean') return 'Boolean';
                 return 'Unknown';
             },
-            // Determines the Lucide icon name for the selected node
             getNodeIcon() {
                 if (Array.isArray(this.selectedNode)) return 'list';
                 if (typeof this.selectedNode === 'object' && this.selectedNode !== null) return 'folder';
@@ -1514,13 +1149,11 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 if (typeof this.selectedNode === 'boolean') return 'toggle-left';
                 return 'file';
             },
-            // Counts properties of an object or items in an array for the selected node
             getPropertyCount() {
                 if (Array.isArray(this.selectedNode)) return this.selectedNode.length;
                 if (typeof this.selectedNode === 'object' && this.selectedNode !== null) return Object.keys(this.selectedNode).length;
                 return 0;
             },
-            // Extracts an ID (if present) from the selected node's properties
             getNodeId() {
                 if (typeof this.selectedNode === 'object' && this.selectedNode !== null && !Array.isArray(this.selectedNode)) {
                     const keys = Object.keys(this.selectedNode);
@@ -1529,23 +1162,18 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 }
                 return null;
             },
-            // Parses tags string from the selected node (if available)
             getNodeTags() {
                 if (typeof this.selectedNode === 'object' && this.selectedNode !== null && !Array.isArray(this.selectedNode) && this.selectedNode.tags) {
                     return this.parseTags(this.selectedNode.tags);
                 }
                 return [];
             },
-            // Checks if the selected node is an object
             isObject() {
                 return typeof this.selectedNode === 'object' && this.selectedNode !== null && !Array.isArray(this.selectedNode);
             },
-            // Checks if the selected node is an array
             isArray() {
                 return Array.isArray(this.selectedNode);
             },
-            // Parses a comma-separated string of tags into an array of tag objects
-            // Supports type::value and relationType>>target formats.
             parseTags(tagsString) {
                 if (!tagsString) return [];
                 
@@ -1597,16 +1225,11 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 }
             },
 
-            // #endregion Utility Methods
-
-            // #region File Handling Methods
-            // Displays a notification message.
             displayNotification(message, type = 'info', duration = 5000) {
                 this.notificationMessage = message;
                 this.notificationType = type;
                 this.showNotification = true;
 
-                // Clear any existing timeout
                 if (this.notificationTimeout) {
                     clearTimeout(this.notificationTimeout);
                 }
@@ -1614,13 +1237,9 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 if (duration !== 0) {
                     this.notificationTimeout = setTimeout(() => {
                         this.showNotification = false;
-                        // Potentially reset message and type after hiding
-                        // this.notificationMessage = '';
-                        // this.notificationType = 'info';
                     }, duration);
                 }
             },
-            // Loads the default JSON file specified in APP_CONFIG
             async loadDefaultFile() {
                 if (!this.config.defaultFile) {
                     this.displayNotification('No default file specified in configuration.', 'warning');
@@ -1632,8 +1251,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     if (this.config.defaultFile.startsWith('http')) {
                         response = await fetch(this.config.defaultFile);
                     } else {
-                        // Assuming local file, though direct fetch might be restricted by browser for local files
-                        // Best to serve it via a local server or use a full URL
                         response = await fetch(this.config.defaultFile);
                     }
                     
@@ -1651,24 +1268,20 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     this.displayNotification('Error loading default file: ' + error.message, 'error');
                 }
             },
-            // Handles file selection via the file input
             handleFileUpload(event) {
                 const file = event.target.files[0];
                 if (file) {
                     this.processFile(file);
                 }
             },
-            // Handles drag-over event for the drop zone
             handleDragOver(event) {
                 event.preventDefault();
                 this.isDragOver = true;
             },
-            // Handles drag-leave event for the drop zone
             handleDragLeave(event) {
                 event.preventDefault();
                 this.isDragOver = false;
             },
-            // Handles file drop event on the drop zone
             handleDrop(event) {
                 event.preventDefault();
                 this.isDragOver = false;
@@ -1683,13 +1296,12 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     }
                 }
             },
-            // Processes the selected/dropped file: reads and parses JSON
             processFile(file) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
                     try {
                         this.jsonData = JSON.parse(e.target.result);
-                        this.selectedNode = this.jsonData; // Select root node by default
+                        this.selectedNode = this.jsonData;
                         this.selectedPath = [];
                         this.displayNotification(`File "${file.name}" loaded successfully.`, 'success');
                     } catch (error) {
@@ -1704,41 +1316,24 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 reader.readAsText(file);
             },
 
-            // #endregion File Handling Methods
-
-            // #region Navigation Methods
-            // Sets the selected node and its path. Also updates `focusedNodePath` to keep focus synchronized with selection.
             selectNode(node, path) {
                 this.selectedNode = node;
                 this.selectedPath = path;
                 this.focusedNodePath = path;
-                // Actual DOM focus is handled by a watcher on the `isFocused` prop in the TreeNode component.
             },
-            // Resets the application state: clears JSON data, selection, focus, and expansion states.
             resetData() {
                 this.jsonData = null;
                 this.selectedNode = null;
                 this.selectedPath = [];
                 this.focusedNodePath = [];
-                this.expandedNodeStates = {}; // Reset expanded states for a new tree.
-                // Reset file input if necessary, though it's hidden
+                this.expandedNodeStates = {};
                 if (this.$refs.fileInput) {
                     this.$refs.fileInput.value = '';
                 }
             },
-            /**
-             * Recursively builds a flat list of all node paths that should be visible in the tree,
-             * respecting the expanded state of parent nodes.
-             * @param {Object|Array} node - The current node being processed.
-             * @param {Array} currentPath - The path to the current node.
-             * @param {Array} visiblePaths - Accumulator for visible node paths.
-             */
             getVisibleNodePathsRecursive(node, currentPath, visiblePaths) {
-                // Skip null/undefined or if it's a leaf node that shouldn't be part of navigation list
-                // (unless it's the root node and it's a simple primitive type).
-                // The 'true' for isStrictLeafCheck ensures we identify nodes that TreeNode itself would consider as having no further expandable children.
-                if (!node || (typeof node !== 'object' && currentPath.length > 0) || this.isLeafNode(node, currentPath, true) ) { /* strict check for childNodes-like behavior */
-                    if (currentPath.length === 0 && (typeof node !== 'object' || Object.keys(node).length === 0)) { // Root is a primitive or empty object/array
+                if (!node || (typeof node !== 'object' && currentPath.length > 0) || this.isLeafNode(node, currentPath, true) ) {
+                    if (currentPath.length === 0 && (typeof node !== 'object' || Object.keys(node).length === 0)) {
                          visiblePaths.push(currentPath);
                     }
                     return;
@@ -1747,30 +1342,25 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 const pathStr = JSON.stringify(currentPath);
                 visiblePaths.push(currentPath);
 
-                // Determine if the current node is expanded based on stored states or defaults for initial render.
                 let isNodeExpanded = this.expandedNodeStates[pathStr];
                 if (isNodeExpanded === undefined) {
-                    // Default expansion logic: root (level 0) or nodes at level 1 are often expanded by default in UIs.
-                    // TreeNode itself defaults expanded if level < 2. We try to mirror that for initial calculation.
-                    isNodeExpanded = currentPath.length < 1; // Approximates TreeNode's level < 2 (path length 0 or 1)
+                    isNodeExpanded = currentPath.length < 1;
                      if(currentPath.length === 0 && this.jsonData && typeof this.jsonData === 'object' && Object.keys(this.jsonData).length > 0) {
-                        isNodeExpanded = true; // Ensure root is considered expanded if it has content.
+                        isNodeExpanded = true;
                      }
                 }
 
                 if (isNodeExpanded) {
                     if (Array.isArray(node)) {
                         node.forEach((item, index) => {
-                            // Only recurse if the item itself is an object/array that could be a tree branch.
                             if (typeof item === 'object' && item !== null) {
                                 this.getVisibleNodePathsRecursive(item, [...currentPath, index], visiblePaths);
                             }
                         });
-                    } else { // Is object
+                    } else {
                         Object.entries(node).forEach(([key, value]) => {
-                            // Only recurse if the value is an object/array that could be a tree branch.
                             if (typeof value === 'object' && value !== null) {
-                                if (key === 'items' && Array.isArray(value)) { // Special handling for 'items' array
+                                if (key === 'items' && Array.isArray(value)) {
                                     value.forEach((subItem, subIndex) => {
                                         if (typeof subItem === 'object' && subItem !== null) {
                                             this.getVisibleNodePathsRecursive(subItem, [...currentPath, key, subIndex], visiblePaths);
@@ -1784,35 +1374,23 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     }
                 }
             },
-            // Generates a flat list of all node paths that are currently visible and considered navigable tree items.
-            // Filters out true leaf nodes (primitives) as they are not directly focusable tree items for navigation.
             getVisibleNodePaths() {
                 const allVisiblePaths = [];
                 if (this.jsonData) {
                     this.getVisibleNodePathsRecursive(this.jsonData, [], allVisiblePaths);
                 }
 
-                // Filter out paths that point to primitive values, unless it's the only node (e.g. root is a string).
                 const navigablePaths = allVisiblePaths.filter(p => {
-                    if (allVisiblePaths.length === 1 && p.length === 0) return true; // Always include if it's the only path (e.g. root)
+                    if (allVisiblePaths.length === 1 && p.length === 0) return true;
                     const nodeAtPath = this.getNodeByPath(this.jsonData, p);
-                    // A node is navigable if it's an object or array that's not considered a strict leaf by TreeNode's rendering logic.
                     return typeof nodeAtPath === 'object' && nodeAtPath !== null && !this.isLeafNode(nodeAtPath, p, true);
                 });
 
-                // If filtering results in an empty list (e.g. root is a primitive and was filtered),
-                // return the original first path to ensure at least one item is focusable.
                 return navigablePaths.length > 0 ? navigablePaths : (allVisiblePaths.length > 0 ? [allVisiblePaths[0]] : []);
             },
-            /**
-             * Updates the expansion state of a node. Called by an event from TreeNode.
-             * @param {Object} payload - Object containing { path: Array, expanded: Boolean }.
-             */
             updateNodeExpansionState(payload) {
                 const { path, expanded } = payload;
                 this.expandedNodeStates[JSON.stringify(path)] = expanded;
-                // If a node is collapsed, and the currently focused node was a descendant of it,
-                // move the focus to the collapsed node itself.
                 if (!expanded) {
                     const currentFocusedPathStr = JSON.stringify(this.focusedNodePath);
                     const collapsedPathStr = JSON.stringify(path);
@@ -1821,18 +1399,12 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     }
                 }
             },
-            /**
-             * Handles tree navigation based on keyboard input (Up, Down, Home, End).
-             * @param {String} direction - The direction of navigation ('up', 'down', 'home', 'end').
-             */
             navigateTree(direction) {
                 const visibleNavigableNodes = this.getVisibleNodePaths();
-                if (!visibleNavigableNodes.length) return; // No nodes to navigate
+                if (!visibleNavigableNodes.length) return;
 
                 let currentIndex = visibleNavigableNodes.findIndex(p => JSON.stringify(p) === JSON.stringify(this.focusedNodePath));
 
-                // If the current focused node isn't in the navigable list (e.g., it's a leaf detail),
-                // try to find its closest navigable parent to re-anchor the navigation.
                 if (currentIndex === -1) {
                     let parentPath = [...this.focusedNodePath];
                     while(parentPath.length > 0) {
@@ -1840,7 +1412,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                         currentIndex = visibleNavigableNodes.findIndex(p => JSON.stringify(p) === JSON.stringify(parentPath));
                         if (currentIndex !== -1) break;
                     }
-                    // If no navigable parent found, default to the first item in the list.
                     if (currentIndex === -1) currentIndex = 0;
                 }
 
@@ -1858,9 +1429,7 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
 
                 if (visibleNavigableNodes[nextIndex]) {
                     const newFocusedPath = visibleNavigableNodes[nextIndex];
-                    // Update focus and selection only if the target path is different.
                     if (JSON.stringify(this.focusedNodePath) !== JSON.stringify(newFocusedPath)) {
-                        // this.focusedNodePath will be updated by selectNode
                         const nextNodeToSelect = this.getNodeByPath(this.jsonData, newFocusedPath);
                         if (nextNodeToSelect !== undefined) {
                              this.selectNode(nextNodeToSelect, newFocusedPath);
@@ -1868,37 +1437,26 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     }
                 }
             },
-            /**
-             * Helper to determine if a node is a "leaf" for navigation purposes.
-             * For navigation, a leaf is typically a primitive value or an empty object/array
-             * that doesn't have further expandable children in the tree structure.
-             * @param {any} node - The node to check.
-             * @param {Array} path - The path to the node.
-             * @param {boolean} isStrictLeafCheck - If true, mimics TreeNode's childNodes logic (empty objects/arrays are leaves).
-             *                                      If false, considers empty objects/arrays as non-leaves if they are the root.
-             */
             isLeafNode(node, path, isStrictLeafCheck = false) {
                 if (node === null || node === undefined) return true;
                 if (typeof node !== 'object') return true;
 
-                if (isStrictLeafCheck) { // Mimics TreeNode's childNodes logic for display
+                if (isStrictLeafCheck) {
                     if (Array.isArray(node) && node.length === 0) return true;
                     if (!Array.isArray(node) && Object.keys(node).length === 0) return true;
-                } else { // For navigation: empty objects/arrays are leaves unless they are the root.
+                } else {
                     if (Array.isArray(node) && node.length === 0 && path.length > 0) return true;
                     if (!Array.isArray(node) && Object.keys(node).length === 0 && path.length > 0) return true;
                 }
 
-                // Determine if node has any children that would be rendered as tree items by TreeNode
                 let hasRenderableChildren = false;
                 if (Array.isArray(node)) {
                     hasRenderableChildren = node.some(item => typeof item === 'object' && item !== null && !this.isLeafNode(item, [...path, 'item'], true));
-                } else { // Is object
+                } else {
                      hasRenderableChildren = Object.values(node).some(value => typeof value === 'object' && value !== null && !this.isLeafNode(value, [...path, 'value'], true));
                 }
                 return !hasRenderableChildren;
             },
-            // Generates a display title for the current node based on its path and type
             getNodeTitle() {
                 const level = this.selectedPath.length;
                 if (level === 0) return 'Main Data';
@@ -1909,7 +1467,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 
                 return title + ': ' + (typeof name === 'number' ? 'Item ' + (name + 1) : name);
             },
-            // Retrieves a node from the jsonData using a given path array
             getNodeByPath(rootNode, path) {
                 if (!path || path.length === 0) return rootNode;
                 
@@ -1922,8 +1479,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 }
                 return current;
             },
-            // Finds a suitable caption (name, title, or id) for a given node object
-            // This is duplicated in TreeNode and ContentViewer, consider centralizing.
             findNodeCaption(node) {
                 if (!node || typeof node !== 'object' || Array.isArray(node)) {
                     return '';
@@ -1931,32 +1486,26 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
 
                 const keys = Object.keys(node);
                 
-                // Prioritize fields ending with 'name'
                 let nameField = keys.find(key => key.toLowerCase().endsWith('name'));
                 if (nameField && node[nameField]) {
                     return String(node[nameField]);
                 }
                 
-                // Then fields ending with 'title'
                 let titleField = keys.find(key => key.toLowerCase().endsWith('title'));
                 if (titleField && node[titleField]) {
                     return String(node[titleField]);
                 }
                 
-                // Finally, fields ending with 'id'
                 let idField = keys.find(key => key.toLowerCase().endsWith('id'));
                 if (idField && node[idField]) {
                     return String(node[idField]);
                 }
                 
-                return ''; // No suitable caption found
+                return '';
             },
-            // Navigates to a node based on a target name (e.g., from a relation tag)
             navigateToRelation(targetName) {
-                // Starts search from the root of the JSON data
                 this.findNodeByTitle(this.jsonData, [], targetName);
             },
-            // Recursively searches for a node by its 'title' or 'name' property
             findNodeByTitle(node, path, targetName) {
                 if (!node || typeof node !== 'object') return false;
                 
@@ -1980,13 +1529,9 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     }
                 }
                 
-                return false; // Target not found in this branch
+                return false;
             },
 
-            // #endregion Navigation Methods
-
-            // #region Export Methods
-            // Initiates the export process for the currently selected node
             exportCurrentNode(format) {
                 if (!this.selectedNode) return;
                 
@@ -2003,47 +1548,40 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 a.click();
                 URL.revokeObjectURL(url);
             },
-            // Prepares content for export by calling the appropriate generator (Markdown/HTML)
-            // TODO: Consider breaking down generateMarkdown and generateHTML if they become too complex.
             generateExportContent(node, path, format) {
-                const title = this.getNodeTitle(); // Uses the existing method to get a title
+                const title = this.getNodeTitle();
                 
                 if (format === 'markdown') {
-                    return this._generateMarkdownRecursive(node, title, 1); // Private helper
+                    return this._generateMarkdownRecursive(node, title, 1);
                 } else {
-                    return this._generateHTMLRecursive(node, title); // Private helper
+                    return this._generateHTMLRecursive(node, title);
                 }
             },
-            // Recursive helper to generate Markdown content
             _generateMarkdownRecursive(node, title, level) {
                 let content = '#'.repeat(level) + ' ' + title + '\n\n';
                 
                 if (node && typeof node === 'object' && !Array.isArray(node) && node.tags) {
-                    content += '**Tags:** ' + node.tags + '\n\n'; // Simple tag display
+                    content += '**Tags:** ' + node.tags + '\n\n';
                 }
                 
                 if (typeof node === 'object' && node !== null) {
                     if (Array.isArray(node)) {
                         node.forEach((item, index) => {
-                            // For array items, create a sub-heading and recurse
                             content += this._generateMarkdownRecursive(item, 'Item ' + (index + 1), level + 1);
                         });
                     } else {
                         Object.entries(node).forEach(([key, value]) => {
-                            if (key !== 'tags') { // Avoid re-processing tags
-                                // For object properties, create a sub-heading and recurse
+                            if (key !== 'tags') {
                                 content += this._generateMarkdownRecursive(value, key, level + 1);
                             }
                         });
                     }
                 } else {
-                    // For primitive values, format them directly
                     content += this._formatValueForMarkdown(node) + '\n\n';
                 }
                 
                 return content;
             },
-            // Generates the main HTML structure for export
             _generateHTMLRecursive(node, title) {
                 let html = '<!DOCTYPE html>\n<html lang="en">\n<head>\n    <meta charset="UTF-8">\n    <meta name="viewport" content="width=device-width, initial-scale=1.0">\n    <title>' + title + '</title>\n    <style>\n' +
 '        body { font-family: Arial, Helvetica, sans-serif; max-width: 800px; margin: 20px auto; padding: 20px; line-height: 1.6; color: #333; background-color: #fff; }\n' +
@@ -2071,15 +1609,14 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
 '        .property-key { font-weight: bold; color: #555; }\n' +
 '    </style>\n</head>\n<body>';
 
-                html += this._generateHTMLContentRecursive(node, title, 1); // Call recursive content generator
+                html += this._generateHTMLContentRecursive(node, title, 1);
                 html += '</body></html>';
 
                 return html;
             },
-            // Recursive helper to generate HTML content
             _generateHTMLContentRecursive(node, title, level) {
                 let currentTitle = title;
-                if (typeof title === 'number') { // For array item indices
+                if (typeof title === 'number') {
                     currentTitle = `Item ${title + 1}`;
                 }
                 let content = '<h' + level + ' id="' + this.slugify(currentTitle) + '">' + currentTitle + '</h' + level + '>';
@@ -2088,7 +1625,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                     content += '<div class="tags-container">';
                     const tags = this.parseTags(node.tags);
                     tags.forEach(tag => {
-                        // Determine tag class based on local getTagClass logic for export
                         let tagStyleClass = 'tag-default';
                         if (tag.type === 'type') tagStyleClass = 'tag-type';
                         else if (tag.type === 'priority') tagStyleClass = 'tag-priority';
@@ -2115,13 +1651,12 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                             content += '</li>';
                         });
                         content += '</ul>';
-                    } else { // Is an object
+                    } else {
                         Object.entries(node).forEach(([key, value]) => {
-                            if (key === 'tags' && typeof value === 'string') return; // Skip tags property as it's handled above
+                            if (key === 'tags' && typeof value === 'string') return;
 
                             content += '<div class="object-property">';
                             content += `<strong class="property-key">${key}:</strong> `;
-                            // Check if value is an object/array to recurse, or primitive to format
                             if (typeof value === 'object' && value !== null) {
                                 content += this._generateHTMLContentRecursive(value, key, level + 1);
                             } else {
@@ -2131,13 +1666,11 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                         });
                     }
                 } else {
-                    // For primitive values, format them directly into a value container
                     content += '<div class="value-container">' + this._formatValueForHTML(node) + '</div>';
                 }
                 
                 return content;
             },
-            // Formats a value for Markdown export
             _formatValueForMarkdown(value) {
                 if (typeof value === 'string') {
                     if (this.isDate(value)) return '📅 ' + this.formatDate(value);
@@ -2150,7 +1683,6 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                 if (typeof value === 'object' && value !== null) return '```json\n' + JSON.stringify(value, null, 2) + '\n```';
                 return String(value);
             },
-            // Helper function to escape HTML special characters
             _escapeHTML(str) {
                 if (typeof str !== 'string') return str;
                 return str.replace(/[&<>"']/g, function (match) {
@@ -2159,78 +1691,57 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                         '<': '&lt;',
                         '>': '&gt;',
                         '"': '&quot;',
-                        "'": '&#39;' // Using &#39; for ' as &apos; is not supported in all HTML versions (though widely supported in HTML5)
+                        "'": '&#39;'
                     }[match];
                 });
             },
-            // Formats a value for HTML export, ensuring string content is HTML-escaped
             _formatValueForHTML(value) {
                 let formattedValue = '';
                 if (typeof value === 'string') {
                     if (this.isDate(value)) formattedValue = `<span class="date-value">📅 ${this._escapeHTML(this.formatDate(value))} (Original: ${this._escapeHTML(value)})</span>`;
-                    else if (this.isEmail(value)) formattedValue = `📧 <a href="mailto:${value}">${this._escapeHTML(value)}</a>`; // href is raw, display text is escaped
-                    else if (this.isUrl(value)) formattedValue = `🔗 <a href="${value}" target="_blank">${this._escapeHTML(value)}</a>`; // href is raw, display text is escaped
-                    else formattedValue = `<span class="string-value">${this._escapeHTML(value).replace(/\n/g, '<br>')}</span>`; // Escape HTML then replace newlines
+                    else if (this.isEmail(value)) formattedValue = `📧 <a href="mailto:${value}">${this._escapeHTML(value)}</a>`;
+                    else if (this.isUrl(value)) formattedValue = `🔗 <a href="${value}" target="_blank">${this._escapeHTML(value)}</a>`;
+                    else formattedValue = `<span class="string-value">${this._escapeHTML(value).replace(/\n/g, '<br>')}</span>`;
                 } else if (typeof value === 'number') {
-                    formattedValue = `<span class="number-value">🔢 ${this.formatNumber(value)}</span>`; // Numbers don't need HTML escaping for content
+                    formattedValue = `<span class="number-value">🔢 ${this.formatNumber(value)}</span>`;
                 } else if (typeof value === 'boolean') {
-                    formattedValue = `<span class="boolean-value">✓ ${value ? 'True' : 'False'}</span>`; // Booleans don't need HTML escaping for content
+                    formattedValue = `<span class="boolean-value">✓ ${value ? 'True' : 'False'}</span>`;
                 } else if (value === null) {
-                    formattedValue = '<span class="primitive-value">null</span>'; // Null is safe
+                    formattedValue = '<span class="primitive-value">null</span>';
                 } else if (typeof value === 'object') {
-                    // For objects, JSON.stringify is used. Its output (a string representing JSON)
-                    // is safe to be placed inside <pre> tags, as <pre> preserves whitespace and
-                    // JSON.stringify ensures that strings within the JSON are properly escaped
-                    // (e.g., quotes within strings become \"). The browser will not interpret
-                    // HTML tags within the text content of a <pre> tag unless the JSON string
-                    // values themselves contain unescaped HTML, which JSON.stringify prevents for its own syntax.
                     formattedValue = `<pre>${JSON.stringify(value, null, 2)}</pre>`;
                 } else {
-                    // For any other primitive type, convert to string and escape.
                     formattedValue = `<span class="primitive-value">${this._escapeHTML(String(value))}</span>`;
                 }
                 return formattedValue;
             },
-            // Generates a URL-friendly slug from a string
             slugify(text) {
                 if (!text) return '';
                 return String(text)
                     .toLowerCase()
-                    .replace(/\s+/g, '-') // Replace spaces with -
-                    .replace(/[^\w-]+/g, '') // Remove all non-word chars
-                    .replace(/--+/g, '-') // Replace multiple - with single -
-                    .replace(/^-+/, '') // Trim - from start of text
-                    .replace(/-+$/, ''); // Trim - from end of text
+                    .replace(/\s+/g, '-')
+                    .replace(/[^\w-]+/g, '')
+                    .replace(/--+/g, '-')
+                    .replace(/^-+/, '')
+                    .replace(/-+$/, '');
             },
 
-            // #endregion Export Methods
-
-            // #region Utility Methods (Data Type Checks & Formatting)
-            // Note: Some of these (isDate, isEmail, isUrl, formatDate, formatNumber) are duplicated
-            // in ContentViewer. Consider centralizing them in a future refactor.
-
-            // Checks if a string is a valid date in YYYY-MM-DD format
             isDate(str) {
-                // Basic check for string type and YYYY-MM-DD pattern
                 return typeof str === 'string' && /^\d{4}-\d{2}-\d{2}/.test(str) && !isNaN(Date.parse(str));
             },
-            // Checks if a string is a valid email address
             isEmail(str) {
                 if (typeof str !== 'string') return false;
-                // Basic email regex
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(str);
             },
-            // Checks if a string is a valid URL
             isUrl(str) {
                 if (typeof str !== 'string') return false;
                 try {
-                    new URL(str); // Constructor will throw an error for invalid URLs
+                    new URL(str);
                     return true;
                 } catch (_) {
                     return false;
                 }
             },
-            // Formats a date string into a more readable format
             formatDate(str) {
                 if (!str) return '';
                 try {
@@ -2240,38 +1751,30 @@ if (urlParams.get('logoUrl')) APP_CONFIG.logoUrl = urlParams.get('logoUrl');
                         day: 'numeric',
                         hour: '2-digit',
                         minute: '2-digit',
-                        timeZone: 'UTC' // Specify UTC or local as needed
+                        timeZone: 'UTC'
                     });
                 } catch (e) {
-                    return str; // Return original if formatting fails
+                    return str;
                 }
             },
-            // Formats a number with locale-specific separators
             formatNumber(num) {
                 if (typeof num !== 'number') return '';
                 return new Intl.NumberFormat('en-US').format(num);
             }
-            // #endregion Utility Methods (Data Type Checks & Formatting)
         },
-        // Lifecycle Hooks
         async mounted() {
-            // Initialize Lucide icons on component mount
             lucide.createIcons();
             
-            // Load default file if specified in the configuration
             if (this.config.defaultFile) {
                 await this.loadDefaultFile();
             }
         },
         updated() {
-            // Re-initialize Lucide icons after DOM updates (e.g., when new content is rendered or notification appears)
             this.$nextTick(() => {
                 lucide.createIcons();
             });
         }
     }).mount('#app');
-    // End of Vue app script
-
 </script>
 </body>
 </html>

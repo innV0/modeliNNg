@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>modeliNNg - Structured Document Editor and Viewer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .module-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div id="app" class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">modeliNNg</h1>
+            <p class="text-xl text-gray-600">Structured Document Editor and Viewer</p>
+        </header>
+
+        <!-- Module Selection -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <!-- Editor Card -->
+            <div class="module-card bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Editor Module</h2>
+                    <p class="text-gray-600 mb-4">Create and edit structured documents with hierarchical items, tags, and relationships.</p>
+                    <ul class="text-gray-600 mb-6 list-disc pl-5">
+                        <li>Document management</li>
+                        <li>Rich content editing</li>
+                        <li>Tagging and filtering</li>
+                        <li>Relation visualization</li>
+                    </ul>
+                    <div class="flex justify-between">
+                        <a href="editor/index.html" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Open Editor</a>
+                        <button id="loadToEditor" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Load Document</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Viewer Card -->
+            <div class="module-card bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Viewer Module</h2>
+                    <p class="text-gray-600 mb-4">Navigate and visualize structured documents in a streamlined interface.</p>
+                    <ul class="text-gray-600 mb-6 list-disc pl-5">
+                        <li>Tree-based navigation</li>
+                        <li>Content display with Markdown</li>
+                        <li>Tag and relation support</li>
+                        <li>Export capabilities</li>
+                    </ul>
+                    <div class="flex justify-between">
+                        <a href="viewer/index.html" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Open Viewer</a>
+                        <button id="loadToViewer" class="bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">Load Document</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Integrated Experience -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden p-6 mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Integrated Experience</h2>
+            <p class="text-gray-600 mb-4">Work with both modules simultaneously, sharing the same document model.</p>
+            <div class="flex justify-center">
+                <button id="startIntegrated" class="bg-purple-600 text-white px-6 py-3 rounded hover:bg-purple-700">Launch Integrated Mode</button>
+            </div>
+        </div>
+
+        <!-- About the Project -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">About modeliNNg</h2>
+            <p class="text-gray-600 mb-4">
+                modeliNNg is a comprehensive platform for creating, editing, and visualizing structured JSON-based models. 
+                It consists of two main modules: a powerful editor for creating and managing structured documents, 
+                and a streamlined viewer for navigating and visualizing these documents.
+            </p>
+            <div class="flex justify-center">
+                <a href="https://github.com/your-repo/modeliNNg" class="text-blue-600 hover:underline">View on GitHub</a>
+            </div>
+        </div>
+
+        <!-- File Input (Hidden) -->
+        <input type="file" id="fileInput" accept=".json" style="display: none;">
+    </div>
+
+    <!-- Load the document model and integration scripts -->
+    <script src="js/documentModel.js"></script>
+    <script src="js/integration.js"></script>
+</body>
+</html>
