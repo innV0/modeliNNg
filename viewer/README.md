@@ -1,10 +1,19 @@
-# Configurable JSON Viewer
+# StruML Viewer: Configurable JSON Viewer
 
 ## Introduction
 
-This application is a configurable JSON viewer. It allows users to load, navigate, and interact with JSON data in a user-friendly interface.
+The StruML Viewer is a configurable JSON viewer application that allows users to load, navigate, and interact with structured JSON data in a user-friendly interface. It serves as the visualization component of the modeliNNg project.
 
-The current focus of this viewer is to serve as a browser for the **iNNitiatives Process Guide**, a framework for innovation management.
+## Role in modeliNNg
+
+The StruML Viewer is one of the two main components of the modeliNNg project:
+
+- **Editor Module (StruML)**: Provides a full-featured environment for creating and editing structured JSON documents with hierarchical items, tags, and relationships.
+- **Viewer Module**: Offers a streamlined interface for viewing and navigating the documents created with the editor.
+
+While both modules can function independently, they are designed to work together as part of an integrated system for structured document creation and visualization.
+
+The current focus of this viewer is to serve as a browser for the **iNNitiatives Process Guide**, a framework for innovation management, but it can be used to visualize any compatible JSON structure.
 
 ## For Users
 
@@ -90,6 +99,14 @@ The application is designed to be customizable:
 
 *   **Vue Components**: Key components like `TreeNode.js` (for rendering individual nodes in the tree) and `ContentViewer.js` (for displaying the content of a selected node) can be modified to change their appearance or behavior.
 *   **Styling**: Tailwind CSS classes can be adjusted in the HTML templates of the Vue components or in `index.html`.
+
+### Available Viewer Implementations
+
+The viewer module includes multiple implementations:
+
+1. **index.html**: The main viewer application with full features including tree navigation, content display, and export capabilities.
+2. **document.html**: A simplified viewer focused on document display with minimal UI.
+3. **commercial.html**: A landing page showcasing the viewer's capabilities with links to the main application.
 
 ## Project Purpose (iNNitiatives context from `sample.json`)
 
